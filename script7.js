@@ -466,8 +466,16 @@ const challengeSublevels = {
     { latex: "(9-3)\\times(4+2)\\div3", math: "(9-3)\\times(4+2)\\div3" }
   ],
   challenge2: [
-    { latex: "2", math: "2" }
-    // Add additional expressions for challenge2 as needed.
+    { latex: "\\alpha", math: "\\alpha" },
+    { latex: "\\beta", math: "\\beta" },
+    { latex: "\\frac{\\gamma}{\\delta}", math: "\\frac{\\gamma}{\\delta}" },
+    { latex: "\\epsilon + \\zeta", math: "\\epsilon + \\zeta" },
+    { latex: "\\theta \\times \\iota", math: "\\theta \\times \\iota" },
+    { latex: "\\frac{\\kappa + \\lambda}{\\mu - \\nu}", math: "\\frac{\\kappa + \\lambda}{\\mu - \\nu}" },
+    { latex: "\\xi - \\omicron", math: "\\xi - \\omicron" },
+    { latex: "\\pi + \\rho", math: "\\pi + \\rho" },
+    { latex: "\\sigma \\div \\tau", math: "\\sigma \\div \\tau" },
+    { latex: "\\frac{\\upsilon + \\phi}{\\chi}", math: "\\frac{\\upsilon + \\phi}{\\chi}" }
   ],
   challenge3: [
     { latex: "\\frac{3^{2} + x_{1}}{4 + x_{2}}", math: "\\frac{3^{2} + x_{1}}{4 + x_{2}}" },

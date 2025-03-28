@@ -375,17 +375,18 @@ const allSublevels = {
   },
   level6: {
     allSkills: [
-      { "latex": "\\frac{3^{2}+4}{x_{1}+1}", "math": "\\frac{3^{2}+4}{x_{1}+1}" },
-      { "latex": "\\sum_{i=1}^{n} \\beta_{i}", "math": "\\sum_{i=1}^{n} \\beta_{i}" },
-      { "latex": "\\int_{0}^{\\pi} \\sin^{2}(x)dx = \\frac{\\pi}{2}", "math": "\\int_{0}^{\\pi} \\sin^{2}(x)dx = \\frac{\\pi}{2}" },
-      { "latex": "\\iint_{D} \\frac{x+y}{2}dxdy", "math": "\\iint_{D} \\frac{x+y}{2}dxdy" },
-      { "latex": "\\lim_{h\\to 0} \\frac{f(x+h)-f(x)}{h}", "math": "\\lim_{h\\to 0} \\frac{f(x+h)-f(x)}{h}" },
-      { "latex": "\\oint_{C} \\frac{z^{2}+1}{z-2}dz", "math": "\\oint_{C} \\frac{z^{2}+1}{z-2}dz" },
-      { "latex": "\\prod_{i=1}^{n} i = n!", "math": "\\prod_{i=1}^{n} i = n!" },
-      { "latex": "\\lim_{n\\to \\infty} \\sum_{i=1}^{n} \\frac{1}{i^{2}} = \\frac{\\pi^{2}}{6}", "math": "\\lim_{n\\to \\infty} \\sum_{i=1}^{n} \\frac{1}{i^{2}} = \\frac{\\pi^{2}}{6}" },
-      { "latex": "\\delta = \\alpha \\times \\beta + \\gamma", "math": "\\delta = \\alpha \\times \\beta + \\gamma" },
-      { "latex": "\\int_{0}^{1} \\int_{0}^{x} e^{y}dy dx", "math": "\\int_{0}^{1} \\int_{0}^{x} e^{y}dy dx" }
+      { latex: "\\frac{3^{2}+4}{x_{1}+1}", math: "\\frac{3^{2}+4}{x_{1}+1}" },
+      { latex: "\\sum_{i=1}^{n} \\beta_{i}", math: "\\sum_{i=1}^{n} \\beta_{i}" },
+      { latex: "\\int_{0}^{\\pi} \\sin^{2}(x)dx = \\frac{\\pi}{2}", math: "\\int_{0}^{\\pi} \\sin^{2}(x)dx = \\frac{\\pi}{2}" },
+      { latex: "\\iint_{D} \\frac{x+y}{2}dxdy", math: "\\iint_{D} \\frac{x+y}{2}dxdy" },
+      { latex: "\\lim_{h\\to 0} \\frac{f(x+h)-f(x)}{h}", math: "\\lim_{h\\to 0} \\frac{f(x+h)-f(x)}{h}" },
+      { latex: "\\oint_{C} \\frac{z^{2}+1}{z-2}dz", math: "\\oint_{C} \\frac{z^{2}+1}{z-2}dz" },
+      { latex: "\\prod_{i=1}^{n} i = n!", math: "\\prod_{i=1}^{n} i = n!" },
+      { latex: "\\lim_{n\\to \\infty} \\sum_{i=1}^{n} \\frac{1}{i^{2}} = \\frac{\\pi^{2}}{6}", math: "\\lim_{n\\to \\infty} \\sum_{i=1}^{n} \\frac{1}{i^{2}} = \\frac{\\pi^{2}}{6}" },
+      { latex: "\\delta = \\alpha \\times \\beta + \\gamma", math: "\\delta = \\alpha \\times \\beta + \\gamma" },
+      { latex: "\\int_{0}^{1} \\int_{0}^{x} e^{y}dy dx", math: "\\int_{0}^{1} \\int_{0}^{x} e^{y}dy dx" }
     ]
+
   },
 
   forPhysicist: {
@@ -453,7 +454,16 @@ const allSublevels = {
 
 const challengeSublevels = {
   challenge1: [
-    { latex: "2", math: "2" }
+    { latex: "7+3-5\\times2", math: "7+3-5\\times2" },
+    { latex: "\\frac{8-3}{2+1}", math: "\\frac{8-3}{2+1}" },
+    { latex: "(4+5)\\div3-2", math: "(4+5)\\div3-2" },
+    { latex: "6\\times2+9-3", math: "6\\times2+9-3" },
+    { latex: "\\frac{12}{4}+5-2", math: "\\frac{12}{4}+5-2" },
+    { latex: "3\\times(2+4)-7", math: "3\\times(2+4)-7" },
+    { latex: "10-3\\times2+4", math: "10-3\\times2+4" },
+    { latex: "\\frac{15-5}{2\\times3}", math: "\\frac{15-5}{2\\times3}" },
+    { latex: "8+2\\times3-4\\div2", math: "8+2\\times3-4\\div2" },
+    { latex: "(9-3)\\times(4+2)\\div3", math: "(9-3)\\times(4+2)\\div3" }
   ],
   challenge2: [
     { latex: "2", math: "2" }

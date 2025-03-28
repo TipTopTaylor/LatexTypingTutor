@@ -375,7 +375,16 @@ const allSublevels = {
   },
   level6: {
     allSkills: [
-      { latex: "\\begin{pmatrix}1 & 0\\\\0 & 1\\end{pmatrix}", math: "\\begin{pmatrix}1 & 0\\\\0 & 1\\end{pmatrix}" }
+      { "latex": "\\frac{3^{2}+4}{x_{1}+1}", "math": "\\frac{3^{2}+4}{x_{1}+1}" },
+      { "latex": "\\sum_{i=1}^{n} \\beta_{i}", "math": "\\sum_{i=1}^{n} \\beta_{i}" },
+      { "latex": "\\int_{0}^{\\pi} \\sin^{2}(x)dx = \\frac{\\pi}{2}", "math": "\\int_{0}^{\\pi} \\sin^{2}(x)dx = \\frac{\\pi}{2}" },
+      { "latex": "\\iint_{D} \\frac{x+y}{2}dxdy", "math": "\\iint_{D} \\frac{x+y}{2}dxdy" },
+      { "latex": "\\lim_{h\\to 0} \\frac{f(x+h)-f(x)}{h}", "math": "\\lim_{h\\to 0} \\frac{f(x+h)-f(x)}{h}" },
+      { "latex": "\\oint_{C} \\frac{z^{2}+1}{z-2}dz", "math": "\\oint_{C} \\frac{z^{2}+1}{z-2}dz" },
+      { "latex": "\\prod_{i=1}^{n} i = n!", "math": "\\prod_{i=1}^{n} i = n!" },
+      { "latex": "\\lim_{n\\to \\infty} \\sum_{i=1}^{n} \\frac{1}{i^{2}} = \\frac{\\pi^{2}}{6}", "math": "\\lim_{n\\to \\infty} \\sum_{i=1}^{n} \\frac{1}{i^{2}} = \\frac{\\pi^{2}}{6}" },
+      { "latex": "\\delta = \\alpha \\times \\beta + \\gamma", "math": "\\delta = \\alpha \\times \\beta + \\gamma" },
+      { "latex": "\\int_{0}^{1} \\int_{0}^{x} e^{y}dy dx", "math": "\\int_{0}^{1} \\int_{0}^{x} e^{y}dy dx" }
     ]
   },
 

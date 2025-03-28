@@ -1,0 +1,1089 @@
+/* =======================================================
+   LaTeX Typing Tutor CSS
+   ======================================================= */
+
+/* --------------------------
+   Base Styles
+-------------------------- */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(173, 216, 230, 0.45) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(173, 216, 230, 0.45) 1px, transparent 1px);
+  background-size: 20px 20px;
+  overflow: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+    /* --------------------------
+       Page Container Layout for Ads
+    -------------------------- */
+    .page-container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start; /* Align items at the top */
+      width: 100%;
+      max-width: 1200px;  /* Adjust overall max-width as needed */
+      margin: 0 auto;     /* Center the container */
+    }
+    /* Main content takes up remaining space */
+    #main-content {
+      flex: 1;
+    }
+    /* Ad sidebar with fixed width */
+    #ad-sidebar {
+      width: 300px;
+      margin-left: 20px;  /* Space between content and ads */
+      background: #f9f9f9;  /* Light background for ad area */
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      /* Hide ad sidebar if you don't have ads yet */
+      /* Remove this display rule when you want it visible */
+      display: none;
+    }
+/* --------------------------
+   Mode Selection / Introduction Screen
+-------------------------- */
+#modeSelectionScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 20px;
+  text-align: center;
+  padding: 0 20px;
+}
+#modeSelectionScreen h1 {
+  font-size: 2.5rem;
+  padding: 15px 30px;
+  border: 3px solid #0459b5;
+  border-radius: 15px;
+  background-color: #4c99ed;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+#modeSelectionScreen p {
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 10px auto;
+  line-height: 1.6;
+  color: #222;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+/* Dark mode adjustments for introduction text */
+.dark-mode #modeSelectionScreen p {
+  color: #f5f5f5;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+}
+/* Mode selection buttons */
+.mode-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.mode-btn {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.mode-btn:hover {
+  background-color: #89c1fd;
+  color: black;
+}
+
+/* --------------------------
+   Dark Mode Toggle Button
+-------------------------- */
+.darkModeToggle {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.darkModeToggle:hover {
+  background-color: #89c1fd;
+  color: black;
+}
+
+/* --------------------------
+   Toggle and Timer Container
+-------------------------- */
+.toggle-timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+  width: auto;
+}
+
+/* --------------------------
+   Challenge Timer
+-------------------------- */
+#challengeTimer {
+  font-size: 1.2rem;
+  background: #007BFF;
+  color: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+.dark-mode #challengeTimer {
+  background: #007BFF;
+  color: #f5f5f5;
+}
+
+/* --------------------------
+   Learning Level Selection Screen
+-------------------------- */
+#learningLevelScreen {
+  display: none;
+  text-align: center;
+  height: 100vh;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+}
+#learningLevelScreen h2 {
+  font-size: 3rem;       /* Larger header */
+  padding: 20px 40px;
+  border: 3px solid #0459b5;
+  border-radius: 15px;
+  background-color: #4c99ed;
+  margin: 0 auto;
+}
+#backToModeSelectionFromLearning {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#backToModeSelectionFromLearning:hover {
+  background-color: #89c1fd;
+  color: black;
+}
+
+/* --------------------------
+   Level & Sublevel Buttons Container
+-------------------------- */
+#levelButtons, #sublevelButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 10000px;
+  margin: 0 auto;
+}
+
+/* --------------------------
+   Sublevel and Challenge Screens
+-------------------------- */
+#sublevelScreen, #challengeSublevelScreen {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+/* --------------------------
+   Best Times Display
+-------------------------- */
+#bestTimesDisplay {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: 0.3s;
+  margin: 5px;
+  text-align: center;
+}
+
+/* --------------------------
+   Headings for Sublevel/Challenge Screens
+-------------------------- */
+#sublevelScreen h1,
+#challengeSublevelScreen h1 {
+  font-size: 2.5rem;
+  padding: 15px 30px;
+  border: 3px solid #0459b5;
+  border-radius: 15px;
+  background-color: #4c99ed;
+}
+
+/* --------------------------
+   Level, Sublevel, and Challenge Buttons
+-------------------------- */
+.level-btn, .sublevel-btn, .challenge-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+  margin: 5px;
+}
+.challenge-btn.completed {
+  background-color: #28a745; /* green */
+  color: white;
+}
+.level-btn:hover, .sublevel-btn:hover, .challenge-btn:hover {
+  background-color: #89c1fd;
+  color: black;
+}
+.completed {
+  background-color: #28a745 !important;
+}
+/* Back Buttons for Sublevel/Challenge Screens */
+#backToLearningLevelScreen, #backToModeSelectionFromChallenge {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#backToLearningLevelScreen:hover, #backToModeSelectionFromChallenge:hover {
+  background-color: #89c1fd;
+  color: black;
+}
+
+/* --------------------------
+   Latex Animation
+-------------------------- */
+#latexAnimation {
+  font-size: 2rem;
+  text-align: center;
+  margin: 20px auto;
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  width: fit-content;
+  min-height: 200px;
+  border-right: 2px solid transparent;
+  animation: blink 3s step-end infinite;
+}
+
+/* --------------------------
+   Math Rendered Container
+-------------------------- */
+.math-rendered {
+  font-size: 2rem;
+  text-align: center;
+  min-height: 120px;
+  height: 120px;
+  line-height: 120px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+.math-rendered span {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* --------------------------
+   Tips Section
+-------------------------- */
+.tips-section {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 280px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 15px 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+.tips-section .close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-color);
+  line-height: 1;
+}
+.tips-section h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  text-align: center;
+}
+.tips-section ul {
+  list-style: disc inside;
+  padding-left: 10px;
+  margin: 10px 0 0 0;
+  text-align: left;
+}
+.tips-section li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+/* Dark Mode for Tip Box */
+.dark-mode .tips-section {
+  background-color: #333;
+  color: #f5f5f5;
+  border-color: #555;
+}
+.dark-mode .tips-section h3 {
+  border-color: #555;
+}
+.dark-mode .tips-section .close-btn {
+  color: #f5f5f5;
+}
+
+/* --------------------------
+   Token Styles
+-------------------------- */
+.token {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  font-size: 2rem;
+}
+.token:hover {
+  background: none;
+}
+.token::after {
+  /* Removed the pseudo-element tooltip to avoid duplication */
+  content: none;
+}
+
+/* --------------------------
+   Tutor Interface
+-------------------------- */
+#tutorInterface {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+#tutorInterface h1 {
+  text-align: center;
+  font-family: 'Bahnschrift', sans-serif;
+  font-size: 3rem;
+  padding: 20px 40px;
+  border: 3px solid #0459b5;
+  border-radius: 15px;
+  background-color: #4c99ed;
+  margin-top: -100px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* --------------------------
+   Progress Bar Animations
+-------------------------- */
+@keyframes progressPulse {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(1.02);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+#progress-bar {
+  animation: progressPulse 1.5s ease-in-out infinite;
+}
+
+/* --------------------------
+   Progress Bar Styles
+-------------------------- */
+#progress-container {
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+  height: 25px;
+  margin: 20px auto;
+  background: linear-gradient(90deg, #e0e0e0, #f9f9f9);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #007BFF, #89c1fd);
+  border-radius: 10px 0 0 10px;
+  z-index: 1;
+  transition: width 0.5s ease-in-out;
+  animation: progressPulse 1.5s ease-in-out infinite;
+}
+#progress-text {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 1rem;
+  /* Use dark text for bright mode */
+  color: #333; 
+  /* Light text-shadow for a subtle lift */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+  line-height: 25px; /* Matches container height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+/* Dark Mode Adjustments for Progress Bar */
+.dark-mode #progress-container {
+  background: linear-gradient(90deg, #444, #555);
+}
+.dark-mode #progress-bar {
+  background: linear-gradient(90deg, #0d6efd, #89c1fd);
+}
+.dark-mode #progress-text {
+  color: #f5f5f5;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* --------------------------
+   Input, Button, and Preview
+-------------------------- */
+/* Container for input and overlay */
+#inputContainer {
+  position: relative;
+  width: 60%;
+  margin: 20px 0;
+}
+
+/* Input field using your original styling for background */
+#inputField {
+  padding: 10px;
+  font-size: 1rem;
+  width: 100%;  /* full width of container */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  margin: 0; /* margin handled by container */
+  box-sizing: border-box;
+  line-height: 1.5;
+  
+  /* Hide input text, but keep caret visible */
+  color: transparent;
+  caret-color: black;
+  
+  /* Set background as in your earlier code */
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+/* Input focus state */
+#inputField:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Dark mode for input */
+.dark-mode input {
+  background-color: #333;
+}
+
+/* Overlay positioned exactly on top of the input */
+#inputOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  white-space: pre;
+  pointer-events: none;
+  z-index: 2;
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+.achievement-icon {
+  font-size: 3rem; /* Increase this value as needed */
+}
+/* Style for the typed portion (normal text) */
+#inputOverlay .typed {
+  color: black;
+}
+/* Hide placeholder text when the input has the guide-active class */
+#inputField.guide-active::placeholder {
+  color: transparent;
+}
+
+/* Style for the remaining ghost text */
+#inputOverlay .remaining {
+  color: #707070;
+}
+.dark-mode #inputField {
+  background-color: #333;
+}
+
+/* Dark mode overlay colors */
+.dark-mode #inputOverlay .typed {
+  color: #f5f5f5;
+}
+.dark-mode #inputOverlay .remaining {
+  color: #888;
+}
+
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: var(--accent-color, #007BFF);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+button:hover {
+  transform: scale(1.05);
+  background-color: #89c1fd;
+  color: black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+#preview {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: gray;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* --------------------------
+   Dark Mode General Styles
+-------------------------- */
+:root {
+  --bg-color: #f8f9fa;
+  --text-color: #333;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+.dark-mode {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.dark-mode button {
+  background-color: #555;
+}
+.dark-mode button:hover {
+  background-color: #89c1fd;
+  color: black;
+}
+.dark-mode input {
+  background-color: #333;
+  color: #f5f5f5;
+  border: 1px solid #555;
+}
+.dark-mode h1 {
+  border-color: #003366;
+  background-color: #004080;
+}
+
+/* --------------------------
+   Shake and Flash Animations
+-------------------------- */
+.shake-input {
+  animation: shake 0.5s;
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+.flash-active {
+  transition: background-color 0.5s ease;
+}
+
+/* --------------------------
+   Blink Animation for Latex Animation
+-------------------------- */
+@keyframes blink {
+  0%, 50%, 100% { border-color: transparent; }
+  25%, 75% { border-color: #333; }
+}
+
+/* --------------------------
+   Achievements Button (Top Left)
+-------------------------- */
+#achievementsBtn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1100;
+}
+
+/* --------------------------
+   Modal Styles
+-------------------------- */
+/* Modal Background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1200;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* Modal Content Box */
+.modal-content {
+  background-color: #f5f5f5;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 650px;
+  border-radius: 10px;
+  position: relative;
+}
+.modal-content h2 {
+  text-align: center;
+  color: 
+}
+/* Close Modal Button */
+.close-modal {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close-modal:hover,
+.close-modal:focus {
+  color: black;
+}
+
+/* --------------------------
+   Achievements Container & Badge
+-------------------------- */
+
+/* Updated Achievements Container for 4 Columns with fixed column width */
+.achievements-container {
+  display: grid;
+  grid-template-columns: repeat(4, 140px);  /* Each column is exactly 140px wide */
+  gap: 20px;
+  padding: 20px;
+  justify-content: center; /* Center the grid */
+  margin: 0 auto;  /* Center container */
+}
+
+/* Achievement Card Styling */
+.achievement {
+  position: relative;
+  overflow: visible; /* Allow tooltips to extend outside the box */
+  width: 140px;      /* Fixed width */
+  height: 140px;     /* Fixed height so all boxes are equal */
+  background: linear-gradient(135deg, #ffffff, #f2f2f2);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover effect: slight lift and bring to front */
+.achievement:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000; /* Bring hovered achievement above siblings */
+}
+
+/* Achievement Inner: controls faded look */
+.achievement .achievement-inner {
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* When achievement is earned, inner content is fully opaque */
+.achievement.earned .achievement-inner {
+  opacity: 1;
+}
+
+/* Tooltip styling on hover */
+.achievement:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -35px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 1); /* Fully opaque background */
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  z-index: 9999; /* Ensure tooltip is on top */
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* --------------------------
+   Dark Mode for Achievements Modal
+-------------------------- */
+.dark-mode .modal-content {
+  background-color: #333;
+  color: #f5f5f5;
+  border-color: #555;
+}
+
+.dark-mode .achievement {
+  background: linear-gradient(135deg, #444, #555);
+  border: 1px solid #666;
+}
+
+.dark-mode .achievement.earned .achievement-inner {
+  opacity: 1;
+}
+
+.dark-mode .close-modal {
+  color: #f5f5f5;
+}
+/* --------------------------
+   Learning Level Screen Specific
+-------------------------- */
+#learningLevelScreen h2 {
+  max-width: 90%;
+  margin: 0 auto;
+}
+#learningLevelScreen button {
+  width: auto;
+  max-width: 300px; /* Adjust this value as needed */
+  margin: 10px auto;
+}
+
+/* --------------------------
+   Tutorial Tip Styles
+-------------------------- */
+.tutorial-tip {
+  position: absolute; /* We'll update its exact position via JS */
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1200;
+  display: none; /* hidden by default */
+  max-width: 300px;
+  white-space: normal;
+}
+.dark-mode .tutorial-tip {
+  background-color: #555;
+}
+
+/* --------------------------
+   Syntax Hint Container
+-------------------------- */
+#syntaxHintContainer {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: gray;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+/* Dark Mode for Syntax Hint */
+.dark-mode #syntaxHintContainer {
+  color: gray; /* or change as needed */
+}
+
+/* --------------------------
+   Endless Mode Preview Screen
+-------------------------- */
+#endlessModeScreen {
+  display: none; /* initially hidden */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px; /* extra vertical padding for spacing */
+  text-align: center;
+  background: transparent; /* remove overlapping background */
+}
+#endlessModeScreen h1 {
+  display: inline-block;
+  font-size: 2.5rem;
+  padding: 15px 30px;
+  border: 3px solid #0459b5;
+  border-radius: 15px;
+  background-color: #4c99ed;
+  /* Remove width constraints so it fits the content */
+}
+
+/* Longest Streak Text */
+#endlessModeScreen p {
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #007bff;
+  max-width: 400px;
+  margin: 0 auto 30px auto; /* extra bottom margin for spacing */
+}
+/* Dark Mode for Longest Streak Text */
+.dark-mode #endlessModeScreen p {
+  background: rgba(0, 0, 0, 0.4);
+  color: #f5f5f5;
+}
+/* Back Button for Endless Mode Preview */
+#backToModeSelectionFromEndless {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#backToModeSelectionFromEndless:hover {
+  background-color: #89c1fd;
+  color: black;
+}
+
+/* --------------------------
+   Begin Endless Mode Button
+-------------------------- */
+#beginEndlessMode {
+  padding: 10px 20px;
+  font-size: 1.7rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+#beginEndlessMode:hover {
+  background-color: #89c1fd;
+  color: black;
+}
+/* Dark Mode for Begin Endless Mode Button */
+.dark-mode #beginEndlessMode {
+  background-color: #555;
+}
+.dark-mode #beginEndlessMode:hover {
+  background-color: #89c1fd;
+  color: black;
+}
+/* Page container: use flex to create two columns */
+.page-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Align items at the top */
+  width: 100%;
+  max-width: 1200px;  /* Adjust overall max-width as needed */
+  margin: 0 auto;     /* Center the container */
+}
+
+/* Main content takes up remaining space */
+#main-content {
+  flex: 1;
+}
+
+/* Ad sidebar with fixed width */
+#ad-sidebar {
+  width: 300px;
+  margin-left: 20px;  /* Space between content and ads */
+  background: #f9f9f9;  /* Light background for ad area */
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* --------------------------
+   CSS Variables & Dark Mode Accent
+-------------------------- */
+:root {
+  --accent-color: #007BFF;
+}
+.dark-mode {
+  --accent-color: #0d6efd; /* or any color that suits your dark mode */
+}
+
+/* --------------------------
+   Tip Pulse Animation
+-------------------------- */
+@keyframes tipPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 var(--accent-color);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px 5px var(--accent-color);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 var(--accent-color);
+  }
+}
+.animate-tip {
+  animation: tipPulse 0.6s ease;
+}
+
+/* --------------------------
+   Tutor Main and Tip Areas
+-------------------------- */
+.tutor-main {
+  flex: 1;
+  margin-right: 20px;
+}
+.tutor-tip {
+  width: 300px;
+}
+
+/* --------------------------
+   Tutorial Speech Bubble
+-------------------------- */
+.tutorial-speech-bubble {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.dark-mode .tutorial-speech-bubble {
+  background-color: #555;
+}
+
+/* --------------------------
+   Info Popup
+-------------------------- */
+.info-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  z-index: 1500;
+  white-space: pre-line;
+  opacity: 1;
+  transition: opacity 10s ease-out;
+}
+
+/* --------------------------
+   Achievement Popup
+-------------------------- */
+.achievement-popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007BFF;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1500;
+  white-space: pre-line;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}

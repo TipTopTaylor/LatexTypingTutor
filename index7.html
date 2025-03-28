@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+  <!-- Confetti library -->
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaTeX Typing Tutor</title>
+  <link rel="stylesheet" href="style7.css">
+
+</head>
+<body>
+
+  <div class="page-container">
+    <!-- Main Content Column -->
+    <div id="main-content">
+      <!-- Mode Selection / Introduction Screen -->
+      <div id="modeSelectionScreen">
+        <!-- Achievements Button in Top Left -->
+        <button id="achievementsBtn">Achievements</button>
+        <button id="resetProgressBtn">Reset All Progress</button>
+        <h1>Welcome to LaTeX Typing Tutor!</h1>
+        <p>
+          LaTeX is a typesetting system often used to write high quality math notation from simple algebra to integrals.
+          This typing tutor will familiarize you with the syntax and slowly accustom you to typing out math expressions in LaTeX! In Learning Mode, hover over a symbol to see its syntax (how to write it)!
+        </p>
+        <div class="latex-animation">
+          <span class="typed-latex" id="latexAnimation"></span>
+          <div class="math-rendered" id="mathRendered"></div>
+        </div>
+        <div class="mode-buttons">
+          <button class="mode-btn" data-mode="tutorial">Tutorial Mode</button>
+          <button class="mode-btn" data-mode="learning">Learning Mode</button>
+          <button class="mode-btn" data-mode="challenge">Challenge Mode</button>
+          <button class="mode-btn" data-mode="endless">Endless Mode</button>
+        </div>
+        <!-- Dark Mode Toggle added on Intro Screen -->
+        <button class="darkModeToggle">Toggle Dark Mode 🌙</button>
+      </div>
+      
+      <!-- Achievements Modal (Updated Achievement Section) -->
+      <div id="achievementsModal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal" id="closeAchievements">&times;</span>
+          <h2>Achievements! (For the Nerds)</h2> 
+          <div class="achievements-container">
+            <!-- Each achievement now includes an inner wrapper for opacity control and supports tooltips -->
+            <div class="achievement" data-achievement="graduatedLatexKindergarten" data-tooltip="Complete Tutorial Mode!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">🎓</div>
+                <p>Graduated LaTeX Kindergarten!</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="finishLearning" data-tooltip="Complete Learning Mode!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">🏆</div>
+                <p>The Learner</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="finishChallenge" data-tooltip="Finish Challenge Mode!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">🥇</div>
+                <p>The Challenger</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="challengeUnder2" data-tooltip="Complete any challenge level in under 2 min!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">⏱️</div>
+                <p>Speedster</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="challengeUnder1" data-tooltip="Complete any challenge level in under 1 min!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">⚡</div>
+                <p>Need for Speed</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="challengeAllUnder5" data-tooltip="Complete each challenge level in under 5 min!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">🔥</div>
+                <p>Gotta Go Fast!</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="challengeAllUnder3" data-tooltip="Complete each challenge level in under 3 min!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">🚀</div>
+                <p>The Flash</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="endless5InRow" data-tooltip="Get a streak of 5 in a row in endless mode!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">5️⃣</div>
+                <p>Dedicated</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="endless10InRow" data-tooltip="Get a streak of 10 in a row in endless mode!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">🌟</div>
+                <p>The Professional</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="finishPhysicist" data-tooltip="Complete For The Physicists mode!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">🔬</div>
+                <p>Einstein</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="finishMathematicians" data-tooltip="Complete For The Mathematicians mode!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">📐</div>
+                <p>Fibonacci</p>
+              </div>
+            </div>
+            <div class="achievement" data-achievement="completionist" data-tooltip="Achieve every achievement!">
+              <div class="achievement-inner">
+                <div class="achievement-icon">💯</div>
+                <p>The Completionist</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Learning Mode Level Selection Screen -->
+      <div id="learningLevelScreen" style="display: none;">
+        <h2>Select a Level</h2>
+        <div id="levelButtons">
+          <button class="level-btn" data-level="level1">Level 1</button>
+          <button class="level-btn" data-level="level2">Level 2</button>
+          <button class="level-btn" data-level="level3">Level 3</button>
+          <button class="level-btn" data-level="level4">Level 4</button>
+          <button class="level-btn" data-level="level5">Level 5</button>
+          <button class="level-btn" data-level="level6">Level 6</button>
+          <!-- Updated labels for advanced levels -->
+          <button class="level-btn" data-level="forPhysicist">For The Physicists</button>
+          <button class="level-btn" data-level="forMathematicians">For The Mathematicians</button>
+        </div>
+        <button id="backToModeSelectionFromLearning" class="back-btn">Back to Introduction</button>
+        <button class="darkModeToggle">Toggle Dark Mode 🌙</button>
+      </div>
+      
+      <!-- Sublevel Screen for Learning Mode -->
+      <div id="sublevelScreen" style="display: none;">
+        <h1>Select a Topic!</h1>
+        <div id="sublevelButtons">
+          <!-- Buttons dynamically populated -->
+        </div>
+        <button id="backToLearningLevelScreen" class="back-btn">Back to Level Selection</button>
+        <button class="darkModeToggle">Toggle Dark Mode 🌙</button>
+      </div>
+      
+      <!-- Endless Mode Screen -->
+      <div id="endlessModeScreen">
+        <h1>Endless Mode</h1>
+        <p>Your longest streak is: <span id="longestStreakDisplay">0</span> questions!<br><br>Can you beat it?</p>
+        <button id="beginEndlessMode">Begin Endless Mode</button>
+        <div>
+          <button id="backToModeSelectionFromEndless" class="back-btn">Back</button><br>
+          <button class="darkModeToggle">Toggle Dark Mode 🌙</button>
+        </div>
+      </div>
+      
+      <!-- Challenge Mode Selection Screen -->
+      <div id="challengeSublevelScreen" style="display: none;">
+        <h1>Select a Challenge!</h1>
+        <div id="challengeButtons">
+          <button class="challenge-btn" data-challenge="challenge1">Challenge 1</button>
+          <button class="challenge-btn" data-challenge="challenge2">Challenge 2</button>
+          <button class="challenge-btn" data-challenge="challenge3">Challenge 3</button>
+          <button class="challenge-btn" data-challenge="challenge4">Challenge 4</button>
+          <button class="challenge-btn" data-challenge="challenge5">Challenge 5</button>
+          <button class="challenge-btn" data-challenge="challenge6">Challenge 6</button>
+          <button class="challenge-btn" data-challenge="challenge7">Challenge 7</button>
+          <button class="challenge-btn" data-challenge="challenge8">Challenge 8</button>
+          <button class="challenge-btn" data-challenge="challenge9">Challenge 9</button>
+          <button class="challenge-btn" data-challenge="challenge10">Challenge 10</button>
+        </div>
+        <button id="backToModeSelectionFromChallenge" class="back-btn">Back to Introduction</button>
+        <button class="darkModeToggle">Toggle Dark Mode 🌙</button>
+      </div>
+      
+      <!-- Tutor Interface (used for all modes) -->
+      <div id="tutorInterface" style="display: none;">
+        <h1>LaTeX Typing Tutor</h1>
+        <div id="progress-container">
+          <div id="progress-bar"></div>
+          <p id="progress-text"></p>
+        </div>
+        <div id="math-display-container" class="math-display-container"></div>
+        <!-- Fixed Syntax Hint Container -->
+        <div id="syntaxHintContainer" class="no-mathjax" style="min-height:2em; text-align:center; margin-top:10px;"></div>
+
+
+        <div id="inputContainer">
+          <input type="text" id="inputField" oninput="updateOverlay()" onkeypress="handleKeyPress(event)" autocomplete="off" placeholder="Type LaTeX syntax here..."> 
+          <div id="inputOverlay" class = "no-mathjax"></div>
+        </div>
+        <button id="showGuideBtn">Show Guide</button>
+
+        <div id="tutorialTip" class="tutorial-tip"></div>
+        <button onclick="checkAnswer()">Submit</button>
+        <div id="preview"></div>
+        <button id="backToPrevious" class="back-btn">Back</button>
+        <div class="toggle-timer-container">
+          <button class="darkModeToggle">Toggle Dark Mode 🌙</button>
+          <div id="challengeTimer" style="display: none;">
+            Timer: <span id="timerDisplay">0:00</span>
+          </div>
+          <div id="bestTimesDisplay" style="display: none;">Best Time: --</div>
+        </div>
+        <div class="tips-section" id="tipsBox">
+          <button class="close-btn" onclick="document.getElementById('tipsBox').style.display='none'">×</button>
+          <h3>Tips</h3>
+          <ul>
+            <li>Hover over a symbol to see its syntax!</li>
+            <li>Too bright? Toggle Dark Mode!</li>
+            <li>Really Stuck? Click show guide to see the proper syntax of the whole question!</li>
+            <li>Capital Greek letters differ from lowercase! <code>\Omega</code> is different than <code>\omega</code>!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Ad Sidebar Column -->
+    <div id="ad-sidebar">
+      <!-- Placeholder for future Google Ads -->
+      <p>Ad Space</p>
+    </div>
+    
+  </div>
+
+  <script src="script7.js"></script>
+</body>
+</html>

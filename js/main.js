@@ -34,6 +34,7 @@ import {
   showTimerPopup,
   resetInputAndPreview
 } from './ui/feedback.js';
+import { startLatexAnimation } from './ui/animation.js';
 
 // Sounds
 const correctSound = new Audio('correct-sound.mp3');
@@ -588,6 +589,46 @@ function populateChallengeScreen() {
 // ==================================================
 
 function setupButtons() {
+  const modeButtons = document.querySelectorAll('.mode-btn');
+  modeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const mode = button.getAttribute('data-mode');
+      if (mode === 'tutorial') startTutorialMode();
+      else if (mode === 'learning') startLearningMode();
+      else if (mode === 'challenge') {
+        document.getElementById("modeSelectionScreen").style.display = "none";
+        document.getElementById("challengeSublevelScreen").style.display = "flex";
+        populateChallengeScreen();
+      }
+      else if (mode === 'endless') startEndlessMode();
+    });
+  });
+
+  document.getElementById("achievementsBtn")?.addEventListener("click", () => {
+    document.getElementById("achievementsModal").style.display = "flex";
+    updateAchievementsDisplay();
+  });
+
+  document.getElementById("closeAchievements")?.addEventListener("click", () => {
+    document.getElementById("achievementsModal").style.display = "none";
+  });
+
+  document.getElementById("resetProgressBtn")?.addEventListener("click", () => {
+    if (confirm("Are you sure you want to reset ALL progress? This cannot be undone!")) {
+      localStorage.clear();
+      location.reload();
+    }
+  });
+
+  const darkModeToggles = document.querySelectorAll('.darkModeToggle');
+  darkModeToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const currentMode = localStorage.getItem('darkMode') === 'true';
+      localStorage.setItem('darkMode', !currentMode);
+      applyDarkMode();
+    });
+  });
+
   document.getElementById("startTutorialBtn")?.addEventListener("click", startTutorialMode);
   document.getElementById("startEndlessBtn")?.addEventListener("click", startEndlessMode);
 
@@ -664,6 +705,7 @@ document.addEventListener("DOMContentLoaded", () => {
   applyDarkMode();
   updateLevelCompletion();
   setupButtons();
+  startLatexAnimation();
 });
 
 // Export for use in HTML onclick handlers

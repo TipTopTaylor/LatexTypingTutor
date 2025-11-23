@@ -5,13 +5,12 @@ import { challengeSublevels, completedChallenges } from '../data/challengeData.j
 import { tutorialQuestions } from '../data/tutorialData.js';
 
 export function normalizeInput(input) {
-  return input
-    .replace(/\\mathrm\{([^}]+)\}/g, '$1')
-    .replace(/\s+/g, '')
-    .replace(/\\left/g, '')
-    .replace(/\\right/g, '')
-    .replace(/\\,/g, '')
-    .replace(/~/g, ' ');
+  input = input.replace(/\s+/g, '')
+               .replace(/\{\s*/g, '{')
+               .replace(/\s*\}/g, '}')
+               .replace(/\\\\times/g, '\\\\times');
+  input = input.replace(/(\\(?:int|iint|sum))(\^{[^}]+})(_\{[^}]+\})/g, '$1$3$2');
+  return input;
 }
 
 export function checkAnswer(userInput) {

@@ -96,7 +96,8 @@ body {
   padding: var(--spacing-lg);
 }
 
-#learningLevelScreen {
+#learningLevelScreen,
+#endlessModeScreen {
   display: none;
 }
 
@@ -560,48 +561,91 @@ button:hover,
 }
 
 /* --------------------------
-   Achievements Screen
+   Modal and Achievements
 -------------------------- */
-#achievementScreen {
+.modal {
   display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  padding: var(--spacing-xl);
-  gap: var(--spacing-lg);
-  overflow-y: auto;
-}
-
-#achievementScreen h1 {
-  margin-bottom: var(--spacing-lg);
-}
-
-#achievementsList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: var(--spacing-lg);
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
   width: 100%;
-  max-width: 1000px;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-.achievement-item {
-  background: rgba(255, 255, 255, 0.9);
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto;
   padding: var(--spacing-lg);
+  border: 1px solid #888;
   border-radius: var(--spacing-sm);
-  box-shadow: var(--box-shadow);
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .modal-content {
+  background-color: var(--bg-dark-secondary);
+  border-color: var(--border-dark);
+  color: var(--text-light);
+}
+
+.close-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: #000;
+}
+
+.dark-mode .close-modal:hover,
+.dark-mode .close-modal:focus {
+  color: #fff;
+}
+
+.achievements-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.achievement {
   text-align: center;
+  padding: var(--spacing-md);
+  border-radius: var(--spacing-sm);
+  background: rgba(0, 123, 255, 0.1);
+  border: 2px solid transparent;
   transition: var(--transition);
+  position: relative;
 }
 
-.achievement-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+.achievement:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.achievement-item.locked {
-  opacity: 0.5;
+.achievement.unlocked {
+  border-color: var(--color-success);
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.achievement.locked {
+  opacity: 0.4;
   filter: grayscale(100%);
+}
+
+.achievement-inner {
+  transition: opacity var(--transition);
 }
 
 .achievement-icon {
@@ -609,16 +653,23 @@ button:hover,
   margin-bottom: var(--spacing-sm);
 }
 
-.achievement-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: var(--spacing-sm) 0;
+.achievement p {
+  margin: var(--spacing-xs) 0;
+  font-size: 0.9rem;
 }
 
-.achievement-description {
-  font-size: 0.9rem;
-  color: #666;
-  margin: var(--spacing-xs) 0;
+.achievement strong {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-size: 1rem;
+}
+
+.dark-mode .achievement {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .achievement.unlocked {
+  background: rgba(40, 167, 69, 0.2);
 }
 
 /* --------------------------
@@ -641,6 +692,8 @@ button:hover,
 .dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-light);
+  background-image: linear-gradient(rgba(173, 216, 230, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(173, 216, 230, 0.1) 1px, transparent 1px);
 }
 
 .dark-mode h1,
@@ -718,15 +771,6 @@ button:hover,
   color: var(--text-light);
 }
 
-.dark-mode .achievement-item {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-light);
-}
-
-.dark-mode .achievement-description {
-  color: #aaa;
-}
-
 /* --------------------------
    Responsive Design
 -------------------------- */
@@ -755,7 +799,7 @@ button:hover,
     margin: var(--spacing-lg) auto;
   }
 
-  #achievementsList {
+  .achievements-container {
     grid-template-columns: 1fr;
   }
 

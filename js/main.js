@@ -681,6 +681,16 @@ function setupButtons() {
   document.getElementById("startTutorialBtn")?.addEventListener("click", startTutorialMode);
   document.getElementById("startEndlessBtn")?.addEventListener("click", startEndlessMode);
 
+  document.getElementById("backToModeSelectionFromLearning")?.addEventListener("click", () => {
+    document.getElementById("learningLevelScreen").style.display = "none";
+    document.getElementById("modeSelectionScreen").style.display = "flex";
+  });
+
+  document.getElementById("backToModeSelectionFromChallenge")?.addEventListener("click", () => {
+    document.getElementById("challengeSublevelScreen").style.display = "none";
+    document.getElementById("modeSelectionScreen").style.display = "flex";
+  });
+
   document.getElementById("backToMenuFromTutor")?.addEventListener("click", () => {
     document.getElementById("tutorInterface").style.display = "none";
     document.getElementById("modeSelectionScreen").style.display = "flex";

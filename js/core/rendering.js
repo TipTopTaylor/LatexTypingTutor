@@ -175,7 +175,7 @@ export function renderMath(currentMode, currentLevel, currentSubLevel, currentIn
   const mathContainer = document.getElementById("math-display-container");
   mathContainer.innerHTML = "";
 
-  function renderToken(token, custom = false) {
+  function renderToken(token, custom = false, mode = null) {
     const tokenEl = document.createElement("span");
     tokenEl.className = "token";
     if (
@@ -198,15 +198,17 @@ export function renderMath(currentMode, currentLevel, currentSubLevel, currentIn
         document.getElementById("syntaxHintContainer").textContent = "";
       });
     }
-    tokenEl.addEventListener("click", () => {
-      document.getElementById("inputField").value += token;
-      window.updatePreview();
-    });
+    if (mode !== "challenge" && mode !== "endless") {
+      tokenEl.addEventListener("click", () => {
+        document.getElementById("inputField").value += token;
+        window.updatePreview();
+      });
+    }
     return tokenEl;
   }
 
   function renderTokenWithHandler(token, handler) {
-    const tokenEl = renderToken(token, true);
+    const tokenEl = renderToken(token, true, currentMode);
     handler(token, tokenEl);
     return tokenEl;
   }
@@ -217,7 +219,7 @@ export function renderMath(currentMode, currentLevel, currentSubLevel, currentIn
     tokens.forEach(token => {
       const tokenEl = tokenHandler
         ? renderTokenWithHandler(token, tokenHandler)
-        : renderToken(token);
+        : renderToken(token, false, currentMode);
       mathContainer.appendChild(tokenEl);
     });
 

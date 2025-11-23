@@ -435,6 +435,8 @@ function startEndlessMode() {
   document.getElementById("modeSelectionScreen").style.display = "none";
   document.getElementById("tutorInterface").style.display = "flex";
   document.getElementById("challengeTimer").style.display = "none";
+  const guideBtn = document.getElementById("showGuideBtn");
+  if (guideBtn) guideBtn.style.display = "none";
   updateCurrentStreakDisplay();
   nextEndlessQuestion();
 }
@@ -465,6 +467,8 @@ function startLearningMode(level, sublevel) {
   document.getElementById("sublevelScreen").style.display = "none";
   document.getElementById("tutorInterface").style.display = "flex";
   document.getElementById("challengeTimer").style.display = "none";
+  const guideBtn = document.getElementById("showGuideBtn");
+  if (guideBtn) guideBtn.style.display = "block";
   resetInputAndPreview();
   renderMath(currentMode, currentLevel, currentSubLevel, currentIndex, currentChallenge, challengeIndex, tutorialIndex, currentExpression, updateProgress, updateTutorialTip);
 }
@@ -479,6 +483,8 @@ function startTutorialMode() {
   document.getElementById("tutorInterface").style.display = "flex";
   document.getElementById("challengeTimer").style.display = "none";
   document.getElementById("tutorialTip").style.display = "block";
+  const guideBtn = document.getElementById("showGuideBtn");
+  if (guideBtn) guideBtn.style.display = "block";
   resetInputAndPreview();
   renderMath(currentMode, currentLevel, currentSubLevel, currentIndex, currentChallenge, challengeIndex, tutorialIndex, currentExpression, updateProgress, updateTutorialTip);
   updateTutorialTip();
@@ -491,6 +497,8 @@ function startChallengeMode(challenge) {
   document.getElementById("challengeSublevelScreen").style.display = "none";
   document.getElementById("tutorInterface").style.display = "flex";
   document.getElementById("challengeTimer").style.display = "block";
+  const guideBtn = document.getElementById("showGuideBtn");
+  if (guideBtn) guideBtn.style.display = "none";
   startChallengeTimer();
   resetInputAndPreview();
   renderMath(currentMode, currentLevel, currentSubLevel, currentIndex, currentChallenge, challengeIndex, tutorialIndex, currentExpression, updateProgress, updateTutorialTip);
@@ -501,6 +509,10 @@ function startChallengeMode(challenge) {
 // ==================================================
 
 window.toggleGuide = function() {
+  if (currentMode === "challenge" || currentMode === "endless") {
+    return;
+  }
+
   const inputField = document.getElementById("inputField");
   const btn = document.getElementById("showGuideBtn");
 
@@ -702,20 +714,22 @@ function setupButtons() {
   document.getElementById("showGuideBtn")?.addEventListener("click", window.toggleGuide);
 
   document.getElementById("backToPrevious")?.addEventListener("click", () => {
+    resetInputAndPreview();
+
     if (currentMode === "learning") {
       document.getElementById("tutorInterface").style.display = "none";
       document.getElementById("sublevelScreen").style.display = "flex";
     } else if (currentMode === "challenge") {
+      stopChallengeTimer();
       document.getElementById("tutorInterface").style.display = "none";
       document.getElementById("challengeSublevelScreen").style.display = "flex";
-      stopChallengeTimer();
     } else if (currentMode === "tutorial" || currentMode === "endless") {
+      stopChallengeTimer();
       document.getElementById("tutorInterface").style.display = "none";
       document.getElementById("modeSelectionScreen").style.display = "flex";
       if (currentMode === "tutorial") {
         document.getElementById("tutorialTip").style.display = "none";
       }
-      stopChallengeTimer();
     }
   });
 

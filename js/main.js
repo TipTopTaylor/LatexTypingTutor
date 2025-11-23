@@ -342,7 +342,11 @@ window.updateOverlay = function() {
       overlayDiv.appendChild(span);
     }
   } else {
+    const typedSpan = document.createElement("span");
+    typedSpan.className = "typed";
+    typedSpan.textContent = inputField.value;
     overlayDiv.innerHTML = "";
+    overlayDiv.appendChild(typedSpan);
   }
 };
 

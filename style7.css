@@ -580,6 +580,7 @@ body {
 }
 .dark-mode #inputField {
   background-color: #333;
+  caret-color: white;
 }
 
 /* Dark mode overlay colors */

@@ -528,7 +528,7 @@ window.toggleGuide = function() {
 // ==================================================
 
 function populateSublevelScreen() {
-  const container = document.getElementById("sublevelButtonContainer");
+  const container = document.getElementById("sublevelButtons");
   container.innerHTML = "";
 
   Object.keys(allSublevels[currentLevel]).forEach(sublevelKey => {
@@ -548,7 +548,7 @@ function populateSublevelScreen() {
 }
 
 function populateChallengeScreen() {
-  const container = document.getElementById("challengeButtonContainer");
+  const container = document.getElementById("challengeButtons");
   container.innerHTML = "";
 
   Object.keys(challengeSublevels).forEach(challengeKey => {
@@ -594,13 +594,46 @@ function setupButtons() {
     button.addEventListener('click', () => {
       const mode = button.getAttribute('data-mode');
       if (mode === 'tutorial') startTutorialMode();
-      else if (mode === 'learning') startLearningMode();
+      else if (mode === 'learning') {
+        document.getElementById("modeSelectionScreen").style.display = "none";
+        document.getElementById("learningLevelScreen").style.display = "flex";
+      }
       else if (mode === 'challenge') {
         document.getElementById("modeSelectionScreen").style.display = "none";
         document.getElementById("challengeSublevelScreen").style.display = "flex";
         populateChallengeScreen();
       }
       else if (mode === 'endless') startEndlessMode();
+    });
+  });
+
+  const levelButtons = document.querySelectorAll('.level-btn');
+  levelButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const level = button.getAttribute('data-level');
+      currentLevel = level;
+      document.getElementById("learningLevelScreen").style.display = "none";
+      document.getElementById("sublevelScreen").style.display = "flex";
+      populateSublevelScreen();
+      updateSublevelCompletion();
+    });
+  });
+
+  document.getElementById("backToModeSelectionFromLearning")?.addEventListener("click", () => {
+    document.getElementById("learningLevelScreen").style.display = "none";
+    document.getElementById("modeSelectionScreen").style.display = "flex";
+  });
+
+  document.getElementById("backToLearningLevelScreen")?.addEventListener("click", () => {
+    document.getElementById("sublevelScreen").style.display = "none";
+    document.getElementById("learningLevelScreen").style.display = "flex";
+  });
+
+  const challengeButtons = document.querySelectorAll('.challenge-btn');
+  challengeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const challenge = button.getAttribute('data-challenge');
+      startChallengeMode(challenge);
     });
   });
 
@@ -660,28 +693,6 @@ function setupButtons() {
     document.getElementById("modeSelectionScreen").style.display = "none";
     document.getElementById("achievementScreen").style.display = "flex";
     updateAchievementsDisplay();
-  });
-
-  document.getElementById("forPhysicistBtn")?.addEventListener("click", () => {
-    currentLevel = "forPhysicist";
-    document.getElementById("modeSelectionScreen").style.display = "none";
-    document.getElementById("sublevelScreen").style.display = "flex";
-    populateSublevelScreen();
-    updateSublevelCompletion();
-  });
-
-  document.getElementById("forMathematiciansBtn")?.addEventListener("click", () => {
-    currentLevel = "forMathematicians";
-    document.getElementById("modeSelectionScreen").style.display = "none";
-    document.getElementById("sublevelScreen").style.display = "flex";
-    populateSublevelScreen();
-    updateSublevelCompletion();
-  });
-
-  document.getElementById("challengeModeBtn")?.addEventListener("click", () => {
-    document.getElementById("modeSelectionScreen").style.display = "none";
-    document.getElementById("challengeSublevelScreen").style.display = "flex";
-    populateChallengeScreen();
   });
 
   const inputField = document.getElementById("inputField");

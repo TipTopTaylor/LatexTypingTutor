@@ -137,3 +137,19 @@ export const completedChallenges = {
   challenge9: false,
   challenge10: false
 };
+
+export function formatChallengeName(key) {
+  const names = {
+    challenge1: "Challenge 1",
+    challenge2: "Challenge 2",
+    challenge3: "Challenge 3",
+    challenge4: "Challenge 4",
+    challenge5: "Challenge 5",
+    challenge6: "Challenge 6",
+    challenge7: "Challenge 7",
+    challenge8: "Challenge 8",
+    challenge9: "Challenge 9",
+    challenge10: "Challenge 10"
+  };
+  return names[key] || key;
+}

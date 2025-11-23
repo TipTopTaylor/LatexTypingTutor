@@ -3,7 +3,6 @@
 
 // Import all modules
 import { getShell, playSound } from './utils/helpers.js';
-import { loadStorage, saveStorage } from './utils/storage.js';
 import {
   loadAchievements,
   unlockAchievement,

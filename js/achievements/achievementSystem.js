@@ -78,7 +78,7 @@ function checkForCompletionist() {
   }
 }
 
-function formatAchievementName(key) {
+export function formatAchievementName(key) {
   const names = {
     finishLearning: "The Learner 🏆",
     finishChallenge: "The Challenger 🥇",

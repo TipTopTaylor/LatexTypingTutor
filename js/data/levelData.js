@@ -394,4 +394,22 @@ export const allSublevels = {
      forMathematiciansII: false
    }
  };
+
+export function formatSublevelName(key) {
+  const names = {
+    additionSubtraction: "Addition & Subtraction",
+    fractions: "Fractions",
+    exponents: "Exponents",
+    subscripts: "Subscripts",
+    greekLetters: "Greek Letters",
+    trigonometry: "Trigonometry",
+    calculus: "Calculus",
+    linearAlgebra: "Linear Algebra",
+    forPhysicistI: "For Physicists I",
+    forPhysicistII: "For Physicists II",
+    forMathematiciansI: "For Mathematicians I",
+    forMathematiciansII: "For Mathematicians II"
+  };
+  return names[key] || key;
+}
  

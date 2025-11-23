@@ -3,14 +3,48 @@
    ======================================================= */
 
 /* --------------------------
+   CSS Variables for Consistency
+-------------------------- */
+:root {
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 30px;
+  --spacing-xxl: 40px;
+
+  --color-primary: #007BFF;
+  --color-primary-hover: #89c1fd;
+  --color-success: #28a745;
+  --color-header-bg: #4c99ed;
+  --color-header-border: #0459b5;
+
+  --bg-light: #f5f5f5;
+  --bg-white: #ffffff;
+  --text-dark: #333;
+  --text-light: #f5f5f5;
+  --border-light: #ccc;
+
+  --bg-dark: #2a2a2a;
+  --bg-dark-secondary: #333;
+  --text-dark-mode: #f5f5f5;
+  --border-dark: #555;
+
+  --border-radius: 8px;
+  --border-radius-lg: 15px;
+  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --transition: 0.3s ease;
+}
+
+/* --------------------------
    Base Styles
 -------------------------- */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
   margin: 0;
-  padding: 20px;
+  padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,110 +54,181 @@ body {
                     linear-gradient(90deg, rgba(173, 216, 230, 0.45) 1px, transparent 1px);
   background-size: 20px 20px;
   overflow: hidden;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color var(--transition), color var(--transition);
 }
-    /* --------------------------
-       Page Container Layout for Ads
-    -------------------------- */
-    .page-container {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start; /* Align items at the top */
-      width: 100%;
-      max-width: 1200px;  /* Adjust overall max-width as needed */
-      margin: 0 auto;     /* Center the container */
-    }
-    /* Main content takes up remaining space */
-    #main-content {
-      flex: 1;
-    }
-    /* Ad sidebar with fixed width */
-    #ad-sidebar {
-      width: 300px;
-      margin-left: 20px;  /* Space between content and ads */
-      background: #f9f9f9;  /* Light background for ad area */
-      padding: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      /* Hide ad sidebar if you don't have ads yet */
-      /* Remove this display rule when you want it visible */
-      display: none;
-    }
+
+.page-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#main-content {
+  flex: 1;
+}
+
+#ad-sidebar {
+  width: 300px;
+  margin-left: var(--spacing-lg);
+  background: #f9f9f9;
+  padding: var(--spacing-sm);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: none;
+}
+
 /* --------------------------
-   Mode Selection / Introduction Screen
+   Screen Layouts (Full Height)
 -------------------------- */
-#modeSelectionScreen {
+#modeSelectionScreen,
+#learningLevelScreen,
+#sublevelScreen,
+#challengeSublevelScreen {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  gap: 20px;
+  min-height: 100vh;
+  gap: var(--spacing-lg);
   text-align: center;
-  padding: 0 20px;
+  padding: var(--spacing-lg);
 }
-#modeSelectionScreen h1 {
+
+#learningLevelScreen {
+  display: none;
+}
+
+/* --------------------------
+   Headers and Titles
+-------------------------- */
+h1 {
   font-size: 2.5rem;
-  padding: 15px 30px;
-  border: 3px solid #0459b5;
-  border-radius: 15px;
-  background-color: #4c99ed;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border: 3px solid var(--color-header-border);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--color-header-bg);
+  box-shadow: var(--box-shadow);
+  margin: 0;
 }
+
+#tutorInterface h1 {
+  font-family: 'Bahnschrift', sans-serif;
+  font-size: 3rem;
+  padding: var(--spacing-lg) var(--spacing-xxl);
+  margin-top: -100px;
+}
+
+#learningLevelScreen h2 {
+  font-size: 3rem;
+  padding: var(--spacing-lg) var(--spacing-xxl);
+  border: 3px solid var(--color-header-border);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--color-header-bg);
+  margin: 0 auto;
+}
+
+/* --------------------------
+   Introduction Text
+-------------------------- */
 #modeSelectionScreen p {
   font-size: 1.2rem;
   text-align: center;
   max-width: 600px;
-  margin: 10px auto;
+  margin: var(--spacing-sm) auto;
   line-height: 1.6;
   color: #222;
   background: rgba(255, 255, 255, 0.8);
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-md);
+  border-radius: var(--spacing-sm);
+  box-shadow: var(--box-shadow);
 }
-/* Dark mode adjustments for introduction text */
+
 .dark-mode #modeSelectionScreen p {
-  color: #f5f5f5;
+  color: var(--text-light);
   background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
-}
-/* Mode selection buttons */
-.mode-buttons {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-.mode-btn {
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.mode-btn:hover {
-  background-color: #89c1fd;
-  color: black;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
 
 /* --------------------------
-   Dark Mode Toggle Button
+   Button Base Styles
 -------------------------- */
-.darkModeToggle {
-  margin-top: 10px;
-  padding: 10px 15px;
-  background-color: #007BFF;
+button,
+.mode-btn,
+.level-btn,
+.sublevel-btn,
+.challenge-btn,
+.back-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 1rem;
+  background-color: var(--color-primary);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: 0.3s;
+  transition: var(--transition);
+  margin: var(--spacing-xs);
 }
+
+button:hover,
+.mode-btn:hover,
+.level-btn:hover,
+.sublevel-btn:hover,
+.challenge-btn:hover,
+.back-btn:hover {
+  background-color: var(--color-primary-hover);
+  color: black;
+}
+
+.mode-btn {
+  font-size: 1.2rem;
+}
+
+/* --------------------------
+   Button Containers
+-------------------------- */
+.mode-buttons,
+#levelButtons,
+#sublevelButtons,
+#challengeButtons {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#levelButtons,
+#sublevelButtons {
+  max-width: 100%;
+}
+
+/* --------------------------
+   Completed State
+-------------------------- */
+.completed,
+.challenge-btn.completed {
+  background-color: var(--color-success) !important;
+  color: white;
+}
+
+/* --------------------------
+   Dark Mode Toggle
+-------------------------- */
+.darkModeToggle {
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
 .darkModeToggle:hover {
-  background-color: #89c1fd;
+  background-color: var(--color-primary-hover);
   color: black;
 }
 
@@ -134,9 +239,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  margin-top: 5px;
-  width: auto;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
 }
 
 /* --------------------------
@@ -144,164 +248,40 @@ body {
 -------------------------- */
 #challengeTimer {
   font-size: 1.2rem;
-  background: #007BFF;
-  color: #f5f5f5;
+  background: var(--color-primary);
+  color: var(--text-light);
   padding: 8px 12px;
-  border-radius: 5px;
-}
-.dark-mode #challengeTimer {
-  background: #007BFF;
-  color: #f5f5f5;
-}
-
-/* --------------------------
-   Learning Level Selection Screen
--------------------------- */
-#learningLevelScreen {
-  display: none;
-  text-align: center;
-  height: 100vh;
-  gap: 20px;
-  flex-direction: column;
-  justify-content: center;
-}
-#learningLevelScreen h2 {
-  font-size: 3rem;       /* Larger header */
-  padding: 20px 40px;
-  border: 3px solid #0459b5;
-  border-radius: 15px;
-  background-color: #4c99ed;
-  margin: 0 auto;
-}
-#backToModeSelectionFromLearning {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-#backToModeSelectionFromLearning:hover {
-  background-color: #89c1fd;
-  color: black;
-}
-
-/* --------------------------
-   Level & Sublevel Buttons Container
--------------------------- */
-#levelButtons, #sublevelButtons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  max-width: 10000px;
-  margin: 0 auto;
-}
-
-/* --------------------------
-   Sublevel and Challenge Screens
--------------------------- */
-#sublevelScreen, #challengeSublevelScreen {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  gap: 20px;
-  padding: 0 20px;
+  border-radius: var(--spacing-xs);
 }
 
 /* --------------------------
    Best Times Display
 -------------------------- */
 #bestTimesDisplay {
-  padding: 10px 20px;
+  padding: var(--spacing-sm) var(--spacing-lg);
   font-size: 1rem;
-  background-color: #007BFF;
+  background-color: var(--color-primary);
   color: white;
   border: none;
-  border-radius: 8px;
-  transition: 0.3s;
-  margin: 5px;
+  border-radius: var(--border-radius);
+  margin: var(--spacing-xs);
   text-align: center;
 }
 
 /* --------------------------
-   Headings for Sublevel/Challenge Screens
+   Tutor Interface
 -------------------------- */
-#sublevelScreen h1,
-#challengeSublevelScreen h1 {
-  font-size: 2.5rem;
-  padding: 15px 30px;
-  border: 3px solid #0459b5;
-  border-radius: 15px;
-  background-color: #4c99ed;
+#tutorInterface {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: var(--spacing-lg);
 }
 
 /* --------------------------
-   Level, Sublevel, and Challenge Buttons
--------------------------- */
-.level-btn, .sublevel-btn, .challenge-btn {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: 0.3s;
-  margin: 5px;
-}
-.challenge-btn.completed {
-  background-color: #28a745; /* green */
-  color: white;
-}
-.level-btn:hover, .sublevel-btn:hover, .challenge-btn:hover {
-  background-color: #89c1fd;
-  color: black;
-}
-.completed {
-  background-color: #28a745 !important;
-}
-/* Back Buttons for Sublevel/Challenge Screens */
-#backToLearningLevelScreen, #backToModeSelectionFromChallenge {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-#backToLearningLevelScreen:hover, #backToModeSelectionFromChallenge:hover {
-  background-color: #89c1fd;
-  color: black;
-}
-
-/* --------------------------
-   Latex Animation
--------------------------- */
-#latexAnimation {
-  font-size: 2rem;
-  text-align: center;
-  margin: 20px auto;
-  font-family: monospace;
-  white-space: nowrap;
-  overflow: hidden;
-  width: fit-content;
-  min-height: 200px;
-  border-right: 2px solid transparent;
-  animation: blink 3s step-end infinite;
-}
-
-/* --------------------------
-   Math Rendered Container
+   Math Display Container
 -------------------------- */
 .math-rendered {
   font-size: 2rem;
@@ -311,75 +291,17 @@ body {
   line-height: 120px;
   width: 100%;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: var(--spacing-lg);
   align-items: center;
   overflow: hidden;
   position: relative;
   display: flex;
 }
+
 .math-rendered span {
   display: inline-block;
   max-width: 100%;
   overflow: hidden;
-}
-
-/* --------------------------
-   Tips Section
--------------------------- */
-.tips-section {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 280px;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  padding: 15px 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  font-size: 0.9rem;
-  z-index: 1000;
-}
-.tips-section .close-btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: var(--text-color);
-  line-height: 1;
-}
-.tips-section h3 {
-  margin: 0 0 10px 0;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
-  text-align: center;
-}
-.tips-section ul {
-  list-style: disc inside;
-  padding-left: 10px;
-  margin: 10px 0 0 0;
-  text-align: left;
-}
-.tips-section li {
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-/* Dark Mode for Tip Box */
-.dark-mode .tips-section {
-  background-color: #333;
-  color: #f5f5f5;
-  border-color: #555;
-}
-.dark-mode .tips-section h3 {
-  border-color: #555;
-}
-.dark-mode .tips-section .close-btn {
-  color: #f5f5f5;
 }
 
 /* --------------------------
@@ -395,82 +317,50 @@ body {
   position: relative;
   font-size: 2rem;
 }
+
 .token:hover {
   background: none;
 }
-.token::after {
-  /* Removed the pseudo-element tooltip to avoid duplication */
-  content: none;
-}
 
 /* --------------------------
-   Tutor Interface
--------------------------- */
-#tutorInterface {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-#tutorInterface h1 {
-  text-align: center;
-  font-family: 'Bahnschrift', sans-serif;
-  font-size: 3rem;
-  padding: 20px 40px;
-  border: 3px solid #0459b5;
-  border-radius: 15px;
-  background-color: #4c99ed;
-  margin-top: -100px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-/* --------------------------
-   Progress Bar Animations
--------------------------- */
-@keyframes progressPulse {
-  0% {
-    transform: scaleX(1);
-  }
-  50% {
-    transform: scaleX(1.02);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-#progress-bar {
-  animation: progressPulse 1.5s ease-in-out infinite;
-}
-
-/* --------------------------
-   Progress Bar Styles
+   Progress Bar
 -------------------------- */
 #progress-container {
   position: relative;
   width: 80%;
   max-width: 600px;
   height: 25px;
-  margin: 20px auto;
+  margin: var(--spacing-lg) auto;
   background: linear-gradient(90deg, #e0e0e0, #f9f9f9);
-  border-radius: 10px;
+  border-radius: var(--spacing-sm);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #progress-bar {
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg, #007BFF, #89c1fd);
-  border-radius: 10px 0 0 10px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
+  border-radius: var(--spacing-sm) 0 0 var(--spacing-sm);
   z-index: 1;
   transition: width 0.5s ease-in-out;
   animation: progressPulse 1.5s ease-in-out infinite;
 }
+
+@keyframes progressPulse {
+  0%, 100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(1.02);
+  }
+}
+
 #progress-text {
   position: relative;
   z-index: 2;
@@ -478,82 +368,61 @@ body {
   padding: 0;
   font-weight: bold;
   font-size: 1rem;
-  /* Use dark text for bright mode */
-  color: #333; 
-  /* Light text-shadow for a subtle lift */
+  color: var(--text-dark);
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
-  line-height: 25px; /* Matches container height */
+  line-height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
 
-
-/* Dark Mode Adjustments for Progress Bar */
-.dark-mode #progress-container {
-  background: linear-gradient(90deg, #444, #555);
-}
-.dark-mode #progress-bar {
-  background: linear-gradient(90deg, #0d6efd, #89c1fd);
-}
-.dark-mode #progress-text {
-  color: #f5f5f5;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
 /* --------------------------
-   Input, Button, and Preview
+   Input Container
 -------------------------- */
-/* Container for input and overlay */
 #inputContainer {
   position: relative;
   width: 60%;
-  margin: 20px 0;
+  max-width: 800px;
+  margin: var(--spacing-lg) 0;
 }
 
-/* Input field using your original styling for background */
 #inputField {
-  padding: 10px;
+  padding: var(--spacing-sm);
   font-size: 1rem;
-  width: 100%;  /* full width of container */
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-  margin: 0; /* margin handled by container */
+  width: 100%;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition);
   box-sizing: border-box;
   line-height: 1.5;
-  
-  /* Hide input text, but keep caret visible */
   color: transparent;
   caret-color: black;
-  
-  /* Set background as in your earlier code */
-  background-color: #fff;
+  background-color: var(--bg-white);
   position: relative;
   z-index: 1;
 }
 
-/* Input focus state */
 #inputField:focus {
-  border-color: #007BFF;
+  border-color: var(--color-primary);
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   outline: none;
 }
 
-/* Dark mode for input */
-.dark-mode input {
-  background-color: #333;
+#inputField.guide-active::placeholder {
+  color: transparent;
 }
 
-/* Overlay positioned exactly on top of the input */
+/* --------------------------
+   Input Overlay
+-------------------------- */
 #inputOverlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: var(--spacing-sm);
   font-size: 1rem;
   font-family: inherit;
   white-space: pre;
@@ -562,529 +431,357 @@ body {
   box-sizing: border-box;
   line-height: 1.5;
 }
-.achievement-icon {
-  font-size: 3rem; /* Increase this value as needed */
-}
-/* Style for the typed portion (normal text) */
+
 #inputOverlay .typed {
   color: black;
 }
-/* Hide placeholder text when the input has the guide-active class */
-#inputField.guide-active::placeholder {
-  color: transparent;
-}
 
-/* Style for the remaining ghost text */
 #inputOverlay .remaining {
   color: #707070;
 }
+
+/* --------------------------
+   Preview Area
+-------------------------- */
+#preview {
+  font-size: 1.5rem;
+  text-align: center;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--spacing-sm) 0;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* --------------------------
+   Syntax Hint
+-------------------------- */
+#syntaxHintContainer {
+  text-align: center;
+  min-height: 40px;
+  padding: var(--spacing-sm);
+  font-size: 1rem;
+  color: #666;
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: var(--border-radius);
+  margin: var(--spacing-sm) 0;
+}
+
+/* --------------------------
+   Tips Section (Tutorial)
+-------------------------- */
+.tips-section {
+  position: fixed;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  width: 280px;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--spacing-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+
+.tips-section .close-btn {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-dark);
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.tips-section h3 {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: var(--spacing-xs);
+  text-align: center;
+}
+
+.tips-section ul {
+  list-style: disc inside;
+  padding-left: var(--spacing-sm);
+  margin: var(--spacing-sm) 0 0 0;
+  text-align: left;
+}
+
+.tips-section li {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* --------------------------
+   Feedback Messages
+-------------------------- */
+.feedback {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.feedback.correct {
+  color: var(--color-success);
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+.feedback.incorrect {
+  color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* --------------------------
+   Endless Mode Streak
+-------------------------- */
+#currentStreak {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: var(--border-radius);
+  margin: var(--spacing-sm) 0;
+}
+
+/* --------------------------
+   Achievements Screen
+-------------------------- */
+#achievementScreen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: var(--spacing-xl);
+  gap: var(--spacing-lg);
+  overflow-y: auto;
+}
+
+#achievementScreen h1 {
+  margin-bottom: var(--spacing-lg);
+}
+
+#achievementsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  width: 100%;
+  max-width: 1000px;
+}
+
+.achievement-item {
+  background: rgba(255, 255, 255, 0.9);
+  padding: var(--spacing-lg);
+  border-radius: var(--spacing-sm);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.achievement-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.achievement-item.locked {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+.achievement-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.achievement-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: var(--spacing-sm) 0;
+}
+
+.achievement-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin: var(--spacing-xs) 0;
+}
+
+/* --------------------------
+   LaTeX Animation (Loading)
+-------------------------- */
+#latexAnimation {
+  font-size: 2rem;
+  text-align: center;
+  margin: var(--spacing-lg) auto;
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  width: fit-content;
+  min-height: 200px;
+}
+
+/* --------------------------
+   Dark Mode
+-------------------------- */
+.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+.dark-mode h1,
+.dark-mode h2 {
+  background-color: #2563eb;
+  border-color: #1e40af;
+}
+
+.dark-mode button,
+.dark-mode .mode-btn,
+.dark-mode .level-btn,
+.dark-mode .sublevel-btn,
+.dark-mode .challenge-btn,
+.dark-mode .back-btn {
+  background-color: #2563eb;
+}
+
+.dark-mode button:hover,
+.dark-mode .mode-btn:hover,
+.dark-mode .level-btn:hover,
+.dark-mode .sublevel-btn:hover,
+.dark-mode .challenge-btn:hover,
+.dark-mode .back-btn:hover {
+  background-color: #60a5fa;
+}
+
+.dark-mode input,
 .dark-mode #inputField {
-  background-color: #333;
+  background-color: var(--bg-dark-secondary);
+  border-color: var(--border-dark);
   caret-color: white;
 }
 
-/* Dark mode overlay colors */
 .dark-mode #inputOverlay .typed {
-  color: #f5f5f5;
+  color: var(--text-light);
 }
+
 .dark-mode #inputOverlay .remaining {
   color: #888;
 }
 
-
-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: var(--accent-color, #007BFF);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
-}
-button:hover {
-  transform: scale(1.05);
-  background-color: #89c1fd;
-  color: black;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-#preview {
-  margin-top: 20px;
-  font-size: 1.5rem;
-  color: gray;
-  min-height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+.dark-mode #progress-container {
+  background: linear-gradient(90deg, #444, #555);
 }
 
-/* --------------------------
-   Dark Mode General Styles
--------------------------- */
-:root {
-  --bg-color: #f8f9fa;
-  --text-color: #333;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-}
-.dark-mode {
-  background-color: #1e1e1e;
-  color: #f5f5f5;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-.dark-mode button {
-  background-color: #555;
-}
-.dark-mode button:hover {
-  background-color: #89c1fd;
-  color: black;
-}
-.dark-mode input {
-  background-color: #333;
-  color: #f5f5f5;
-  border: 1px solid #555;
-}
-.dark-mode h1 {
-  border-color: #003366;
-  background-color: #004080;
+.dark-mode #progress-bar {
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
 }
 
-/* --------------------------
-   Shake and Flash Animations
--------------------------- */
-.shake-input {
-  animation: shake 0.5s;
-}
-@keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
-}
-.flash-active {
-  transition: background-color 0.5s ease;
+.dark-mode #progress-text {
+  color: var(--text-light);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* --------------------------
-   Blink Animation for Latex Animation
--------------------------- */
-@keyframes blink {
-  0%, 50%, 100% { border-color: transparent; }
-  25%, 75% { border-color: #333; }
+.dark-mode #preview {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-/* --------------------------
-   Achievements Button (Top Left)
--------------------------- */
-#achievementsBtn {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  padding: 10px 15px;
-  font-size: 1rem;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  z-index: 1100;
-}
-
-/* --------------------------
-   Modal Styles
--------------------------- */
-/* Modal Background */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1200;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-/* Modal Content Box */
-.modal-content {
-  background-color: #f5f5f5;
-  margin: 10% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 650px;
-  border-radius: 10px;
-  position: relative;
-}
-.modal-content h2 {
-  text-align: center;
-  color: 
-}
-/* Close Modal Button */
-.close-modal {
-  color: #aaa;
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close-modal:hover,
-.close-modal:focus {
-  color: black;
-}
-
-/* --------------------------
-   Achievements Container & Badge
--------------------------- */
-
-/* Updated Achievements Container for 4 Columns with fixed column width */
-.achievements-container {
-  display: grid;
-  grid-template-columns: repeat(4, 140px);  /* Each column is exactly 140px wide */
-  gap: 20px;
-  padding: 20px;
-  justify-content: center; /* Center the grid */
-  margin: 0 auto;  /* Center container */
-}
-
-/* Achievement Card Styling */
-.achievement {
-  position: relative;
-  overflow: visible; /* Allow tooltips to extend outside the box */
-  width: 140px;      /* Fixed width */
-  height: 140px;     /* Fixed height so all boxes are equal */
-  background: linear-gradient(135deg, #ffffff, #f2f2f2);
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Hover effect: slight lift and bring to front */
-.achievement:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  z-index: 1000; /* Bring hovered achievement above siblings */
-}
-
-/* Achievement Inner: controls faded look */
-.achievement .achievement-inner {
-  opacity: 0.4;
-  transition: opacity 0.3s ease;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-/* When achievement is earned, inner content is fully opaque */
-.achievement.earned .achievement-inner {
-  opacity: 1;
-}
-
-/* Tooltip styling on hover */
-.achievement:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: -35px; /* Adjust as needed */
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 1); /* Fully opaque background */
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  white-space: nowrap;
-  font-size: 0.8rem;
-  z-index: 9999; /* Ensure tooltip is on top */
-  opacity: 0;
-  animation: fadeIn 0.3s forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-/* --------------------------
-   Dark Mode for Achievements Modal
--------------------------- */
-.dark-mode .modal-content {
-  background-color: #333;
-  color: #f5f5f5;
-  border-color: #555;
-}
-
-.dark-mode .achievement {
-  background: linear-gradient(135deg, #444, #555);
-  border: 1px solid #666;
-}
-
-.dark-mode .achievement.earned .achievement-inner {
-  opacity: 1;
-}
-
-.dark-mode .close-modal {
-  color: #f5f5f5;
-}
-/* --------------------------
-   Learning Level Screen Specific
--------------------------- */
-#learningLevelScreen h2 {
-  max-width: 90%;
-  margin: 0 auto;
-}
-#learningLevelScreen button {
-  width: auto;
-  max-width: 300px; /* Adjust this value as needed */
-  margin: 10px auto;
-}
-
-/* --------------------------
-   Tutorial Tip Styles
--------------------------- */
-.tutorial-tip {
-  position: absolute; /* We'll update its exact position via JS */
-  background-color: #007BFF;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 1200;
-  display: none; /* hidden by default */
-  max-width: 300px;
-  white-space: normal;
-}
-.dark-mode .tutorial-tip {
-  background-color: #555;
-}
-
-/* --------------------------
-   Syntax Hint Container
--------------------------- */
-#syntaxHintContainer {
-  margin-top: 20px;
-  font-size: 1.5rem;
-  color: gray;
-  min-height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Dark Mode for Syntax Hint */
 .dark-mode #syntaxHintContainer {
-  color: gray; /* or change as needed */
+  background: rgba(255, 255, 255, 0.05);
+  color: #aaa;
+}
+
+.dark-mode .tips-section {
+  background-color: var(--bg-dark-secondary);
+  color: var(--text-light);
+  border-color: var(--border-dark);
+}
+
+.dark-mode .tips-section h3 {
+  border-color: var(--border-dark);
+}
+
+.dark-mode .tips-section .close-btn {
+  color: var(--text-light);
+}
+
+.dark-mode .achievement-item {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+}
+
+.dark-mode .achievement-description {
+  color: #aaa;
 }
 
 /* --------------------------
-   Endless Mode Preview Screen
+   Responsive Design
 -------------------------- */
-#endlessModeScreen {
-  display: none; /* initially hidden */
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px; /* extra vertical padding for spacing */
-  text-align: center;
-  background: transparent; /* remove overlapping background */
-}
-#endlessModeScreen h1 {
-  display: inline-block;
-  font-size: 2.5rem;
-  padding: 15px 30px;
-  border: 3px solid #0459b5;
-  border-radius: 15px;
-  background-color: #4c99ed;
-  /* Remove width constraints so it fits the content */
-}
-
-/* Longest Streak Text */
-#endlessModeScreen p {
-  font-size: 1.2rem;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #007bff;
-  max-width: 400px;
-  margin: 0 auto 30px auto; /* extra bottom margin for spacing */
-}
-/* Dark Mode for Longest Streak Text */
-.dark-mode #endlessModeScreen p {
-  background: rgba(0, 0, 0, 0.4);
-  color: #f5f5f5;
-}
-/* Back Button for Endless Mode Preview */
-#backToModeSelectionFromEndless {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-#backToModeSelectionFromEndless:hover {
-  background-color: #89c1fd;
-  color: black;
-}
-
-/* --------------------------
-   Begin Endless Mode Button
--------------------------- */
-#beginEndlessMode {
-  padding: 10px 20px;
-  font-size: 1.7rem;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-#beginEndlessMode:hover {
-  background-color: #89c1fd;
-  color: black;
-}
-/* Dark Mode for Begin Endless Mode Button */
-.dark-mode #beginEndlessMode {
-  background-color: #555;
-}
-.dark-mode #beginEndlessMode:hover {
-  background-color: #89c1fd;
-  color: black;
-}
-/* Page container: use flex to create two columns */
-.page-container {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start; /* Align items at the top */
-  width: 100%;
-  max-width: 1200px;  /* Adjust overall max-width as needed */
-  margin: 0 auto;     /* Center the container */
-}
-
-/* Main content takes up remaining space */
-#main-content {
-  flex: 1;
-}
-
-/* Ad sidebar with fixed width */
-#ad-sidebar {
-  width: 300px;
-  margin-left: 20px;  /* Space between content and ads */
-  background: #f9f9f9;  /* Light background for ad area */
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* --------------------------
-   CSS Variables & Dark Mode Accent
--------------------------- */
-:root {
-  --accent-color: #007BFF;
-}
-.dark-mode {
-  --accent-color: #0d6efd; /* or any color that suits your dark mode */
-}
-
-/* --------------------------
-   Tip Pulse Animation
--------------------------- */
-@keyframes tipPulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 var(--accent-color);
+@media (max-width: 768px) {
+  body {
+    padding: var(--spacing-sm);
   }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px 5px var(--accent-color);
+
+  h1 {
+    font-size: 2rem;
+    padding: var(--spacing-sm) var(--spacing-lg);
   }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 var(--accent-color);
+
+  #tutorInterface h1 {
+    font-size: 2rem;
+    margin-top: -50px;
+  }
+
+  #inputContainer {
+    width: 90%;
+  }
+
+  .tips-section {
+    position: static;
+    width: 90%;
+    margin: var(--spacing-lg) auto;
+  }
+
+  #achievementsList {
+    grid-template-columns: 1fr;
+  }
+
+  .math-rendered {
+    font-size: 1.5rem;
+    min-height: 80px;
+    height: 80px;
+    line-height: 80px;
+  }
+
+  .token {
+    font-size: 1.5rem;
   }
 }
-.animate-tip {
-  animation: tipPulse 0.6s ease;
-}
 
-/* --------------------------
-   Tutor Main and Tip Areas
--------------------------- */
-.tutor-main {
-  flex: 1;
-  margin-right: 20px;
-}
-.tutor-tip {
-  width: 300px;
-}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
 
-/* --------------------------
-   Tutorial Speech Bubble
--------------------------- */
-.tutorial-speech-bubble {
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-  font-size: 1rem;
-  line-height: 1.4;
-}
-.dark-mode .tutorial-speech-bubble {
-  background-color: #555;
-}
-
-/* --------------------------
-   Info Popup
--------------------------- */
-.info-popup {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #28a745;
-  color: white;
-  padding: 15px;
-  border-radius: 8px;
-  z-index: 1500;
-  white-space: pre-line;
-  opacity: 1;
-  transition: opacity 10s ease-out;
-}
-
-/* --------------------------
-   Achievement Popup
--------------------------- */
-.achievement-popup {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #007BFF;
-  color: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 1500;
-  white-space: pre-line;
-  opacity: 1;
-  transition: opacity 1s ease-out;
+  button,
+  .mode-btn,
+  .level-btn,
+  .sublevel-btn,
+  .challenge-btn {
+    font-size: 0.9rem;
+    padding: 8px var(--spacing-md);
+  }
 }

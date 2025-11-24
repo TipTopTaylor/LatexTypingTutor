@@ -4,7 +4,12 @@ import { saveToStorage, loadFromStorage } from '../utils/storage.js';
 export let completedSublevels = {
   level1: {},
   level2: {},
-  level3: {}
+  level3: {},
+  level4: {},
+  level5: {},
+  level6: {},
+  forPhysicist: {},
+  forMathematicians: {}
 };
 
 export let completedChallenges = {};

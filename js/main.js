@@ -41,6 +41,7 @@ import { allSublevels } from './data/levelData.js';
 import { challengeSublevels } from './data/challengeData.js';
 import { tutorialQuestions } from './data/tutorialData.js';
 import { normalizeInput } from './core/answerChecker.js';
+import { renderMath, resetTutorialTipState } from './core/rendering.js';
 
 // Sounds
 const correctSound = new Audio('correct-sound.mp3');

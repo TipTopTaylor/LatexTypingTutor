@@ -1,5 +1,6 @@
 // Screen Management - Show/Hide different screens
 
+export function showScreen(screenId) {
   const screens = [
     'modeSelectionScreen',
     'learningLevelScreen',
@@ -21,23 +22,30 @@
   }
 }
 
+export function goToAuthScreen() {
   showScreen('authScreen');
 }
 
+export function goToModeSelection() {
   showScreen('modeSelectionScreen');
 }
 
+export function goToLearningLevel() {
   showScreen('learningLevelScreen');
 }
 
+export function goToSublevel() {
   showScreen('sublevelScreen');
 }
 
+export function goToChallengeSublevel() {
   showScreen('challengeSublevelScreen');
 }
 
+export function goToEndlessMode() {
   showScreen('endlessModeScreen');
 }
 
+export function goToTutorInterface() {
   showScreen('tutorInterface');
 }

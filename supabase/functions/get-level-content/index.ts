@@ -6,6 +6,22 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Client-Info, Apikey',
 };
 
+// Map level strings to numbers
+function getLevelNumber(level: string): number | null {
+  if (level.startsWith('level')) {
+    const num = parseInt(level.replace('level', ''));
+    return isNaN(num) ? null : num;
+  }
+  
+  // Special levels
+  const specialLevels: Record<string, number> = {
+    'forPhysicist': 7,
+    'forMathematicians': 8
+  };
+  
+  return specialLevels[level] || null;
+}
+
 Deno.serve(async (req: Request) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, {
@@ -26,12 +42,23 @@ Deno.serve(async (req: Request) => {
     );
 
     const url = new URL(req.url);
-    const level = url.searchParams.get('level');
+    const levelParam = url.searchParams.get('level');
     const sublevel = url.searchParams.get('sublevel');
 
-    if (!level || !sublevel) {
+    if (!levelParam || !sublevel) {
       return new Response(
         JSON.stringify({ error: 'Missing level or sublevel parameter' }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        }
+      );
+    }
+
+    const levelNumber = getLevelNumber(levelParam);
+    if (levelNumber === null) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid level parameter' }),
         {
           status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -42,7 +69,7 @@ Deno.serve(async (req: Request) => {
     const { data, error } = await supabase
       .from('level_content')
       .select('content')
-      .eq('level_number', parseInt(level))
+      .eq('level_number', levelNumber)
       .eq('sublevel_name', sublevel)
       .maybeSingle();
 

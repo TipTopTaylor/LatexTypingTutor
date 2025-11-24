@@ -42,3 +42,45 @@ export function playSound(audio) {
   audio.currentTime = 0;
   audio.play().catch(err => console.log("Error playing sound:", err));
 }
+
+export function formatSublevelName(key) {
+  const names = {
+    additionSubtraction: "Addition & Subtraction",
+    multiplicationDivision: "Multiplication & Division",
+    exponentsSubscripts: "Exponents & Subscripts",
+    checkpoint1: "Checkpoint 1",
+    fractionsRadicals: "Fractions & Radicals",
+    greekLetters: "Greek Letters",
+    advancedOperations: "Advanced Operations",
+    checkpoint2: "Checkpoint 2",
+    complexExpressions: "Complex Expressions",
+    integralsDerivatives: "Integrals & Derivatives",
+    matrices: "Matrices",
+    checkpoint3: "Checkpoint 3",
+    quantumMechanics: "Quantum Mechanics",
+    thermodynamics: "Thermodynamics",
+    electromagnetism: "Electromagnetism",
+    statisticalMechanics: "Statistical Mechanics",
+    setTheory: "Set Theory",
+    groupTheory: "Group Theory",
+    topology: "Topology",
+    realAnalysis: "Real Analysis"
+  };
+  return names[key] || key;
+}
+
+export function formatChallengeName(key) {
+  const names = {
+    challenge1: "Speed Challenge 1",
+    challenge2: "Speed Challenge 2",
+    challenge3: "Speed Challenge 3",
+    challenge4: "Speed Challenge 4",
+    challenge5: "Speed Challenge 5",
+    challenge6: "Speed Challenge 6"
+  };
+  return names[key] || key;
+}
+
+export function getAccessMessage(levelId) {
+  return '';
+}

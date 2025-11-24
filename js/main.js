@@ -35,7 +35,10 @@ import {
   setupDarkModeListeners
 } from './ui/darkMode.js';
 import {
-  playSound
+  playSound,
+  formatSublevelName,
+  formatChallengeName,
+  getAccessMessage
 } from './utils/helpers.js';
 import { allSublevels } from './data/levelData.js';
 import { challengeSublevels } from './data/challengeData.js';

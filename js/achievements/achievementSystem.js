@@ -66,7 +66,11 @@ export function updateAchievementsDisplay() {
   document.querySelectorAll(".achievement").forEach(el => {
     let achKey = el.getAttribute("data-achievement");
     if (achievements[achKey]) {
-      el.classList.add("earned");
+      el.classList.add("unlocked");
+      el.classList.remove("locked");
+    } else {
+      el.classList.add("locked");
+      el.classList.remove("unlocked");
     }
   });
 }

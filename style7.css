@@ -243,6 +243,26 @@ button:hover,
 }
 
 /* --------------------------
+   Top Right Corner Buttons
+-------------------------- */
+#achievementsBtn,
+#resetProgressBtn {
+  position: fixed;
+  right: var(--spacing-md);
+  z-index: 999;
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: 0.9rem;
+}
+
+#achievementsBtn {
+  top: var(--spacing-md);
+}
+
+#resetProgressBtn {
+  top: calc(var(--spacing-md) + 45px);
+}
+
+/* --------------------------
    Toggle and Timer Container
 -------------------------- */
 .toggle-timer-container {
@@ -831,6 +851,16 @@ button:hover,
     min-height: 25px;
   }
 
+  #achievementsBtn,
+  #resetProgressBtn {
+    font-size: 0.8rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  #resetProgressBtn {
+    top: calc(var(--spacing-md) + 40px);
+  }
+
   .tips-section {
     position: static;
     width: 90%;
@@ -874,6 +904,21 @@ button:hover,
   .challenge-btn {
     font-size: 0.9rem;
     padding: 8px var(--spacing-sm);
+  }
+
+  #achievementsBtn,
+  #resetProgressBtn {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    right: var(--spacing-xs);
+  }
+
+  #achievementsBtn {
+    top: var(--spacing-xs);
+  }
+
+  #resetProgressBtn {
+    top: calc(var(--spacing-xs) + 35px);
   }
 
   .math-rendered {

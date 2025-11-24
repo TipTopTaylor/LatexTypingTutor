@@ -41,7 +41,7 @@ export function tokenizeLatex(input) {
       }
     }
 
-    if ((["\\hat", "\\mathbf", "\\text", "\\sqrt", "\\mathcal"].includes(command)) && input[i] === '{') {
+    if ((["\\hat", "\\vec", "\\mathbf", "\\text", "\\sqrt", "\\mathcal"].includes(command)) && input[i] === '{') {
       command += readGroup();
     }
     if (["\\sum", "\\iint", "\\oint", "\\int", "\\lim", "\\iiint"].includes(command)) {

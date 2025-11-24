@@ -395,32 +395,4 @@ export const allSublevels = {
      forMathematiciansII: false
    }
  };
-
-  const names = {
-    additionSubtraction: "Addition & Subtraction",
-    multiplicationDivision: "Multiplication & Division",
-    exponentsSubscripts: "Exponents & Subscripts",
-    checkpoint1: "Checkpoint 1",
-    fractions: "Fractions",
-    checkpoint2: "Checkpoint 2",
-    greekIntroduction: "Greek Letters Introduction",
-    greekExpressions: "Greek Expressions",
-    simpleIntegrals: "Simple Integrals",
-    doubleIntegralsGreek: "Double Integrals & Greek",
-    contourIntegrals: "Contour Integrals",
-    complexIntegrals: "Complex Integrals",
-    basicSum: "Basic Summation",
-    complexSums: "Complex Summations",
-    limits: "Limits",
-    simpleMatrix: "Simple Matrices",
-    complexMatrix: "Complex Matrices",
-    commonMatrices: "Common Matrices",
-    allSkills: "All Skills",
-    forPhysicistI: "For Physicists I",
-    forPhysicistII: "For Physicists II",
-    forMathematiciansI: "For Mathematicians I",
-    forMathematiciansII: "For Mathematicians II"
-  };
-  return names[key] || key;
-}
  

@@ -43,6 +43,7 @@ import {
 import { allSublevels } from './data/levelData.js';
 import { challengeSublevels } from './data/challengeData.js';
 import { tutorialQuestions } from './data/tutorialData.js';
+import { getLevelContent } from './data/levelDataLoader.js';
 import { normalizeInput } from './core/answerChecker.js';
 import { renderMath, resetTutorialTipState } from './core/rendering.js';
 import { initAuth, hasPremiumAccess } from './auth/authManager.js';
@@ -519,6 +520,16 @@ async function startLearningMode(level, sublevel) {
   currentLevel = level;
   currentSubLevel = sublevel;
   currentIndex = 0;
+
+  const content = await getLevelContent(level, sublevel);
+  if (!content || content.length === 0) {
+    alert('Failed to load level content');
+    return;
+  }
+
+  allSublevels[`level${level}`] = allSublevels[`level${level}`] || {};
+  allSublevels[`level${level}`][sublevel] = content;
+
   document.getElementById("sublevelScreen").style.display = "none";
   document.getElementById("tutorInterface").style.display = "flex";
   document.getElementById("challengeTimer").style.display = "none";

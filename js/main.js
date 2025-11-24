@@ -389,7 +389,8 @@ function updateLevelCompletion() {
   ['forPhysicist', 'forMathematicians'].forEach(levelKey => {
     const levelButton = document.querySelector(`[data-level="${levelKey}"]`);
     if (levelButton) {
-      const allCompleted = Object.values(completedSublevels[levelKey]).every(val => val);
+      const completedValues = Object.values(completedSublevels[levelKey]);
+      const allCompleted = completedValues.length > 0 && completedValues.every(val => val);
       if (allCompleted) {
         levelButton.classList.add("completed");
         if (!levelButton.innerHTML.includes("✓")) {

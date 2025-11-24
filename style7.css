@@ -248,7 +248,7 @@ button:hover,
 #achievementsBtn,
 #resetProgressBtn {
   position: fixed;
-  right: var(--spacing-md);
+  left: var(--spacing-md);
   z-index: 999;
   padding: var(--spacing-xs) var(--spacing-md);
   font-size: 0.9rem;
@@ -1239,3 +1239,4 @@ body.dark-mode .users-table td {
 body.dark-mode .users-table tbody tr:hover {
   background: var(--bg-dark);
 }
+

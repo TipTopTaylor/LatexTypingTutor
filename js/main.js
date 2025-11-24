@@ -48,8 +48,8 @@ import { normalizeInput } from './core/answerChecker.js';
 import { renderMath, resetTutorialTipState } from './core/rendering.js';
 import { initAuth, hasPremiumAccess } from './auth/authManager.js';
 import { setupAuthUI } from './ui/authUI.js';
-import { submitChallengeScore, switchLeaderboardChallenge } from './leaderboard/leaderboardManager.js';
-import { initLeaderboardUI, refreshLeaderboard } from './leaderboard/leaderboardUI.js';
+import { submitChallengeScore } from './leaderboard/leaderboardManager.js';
+import { initLeaderboardUI, refreshLeaderboard, switchLeaderboardChallenge } from './leaderboard/leaderboardUI.js';
 
 // Sounds
 const correctSound = new Audio('correct-sound.mp3');

@@ -1,9 +1,40 @@
+// Authentication UI Handler
+import { signUp, signIn, signOut } from '../auth/authManager.js';
+
+export function setupAuthUI() {
+  const loginBtn = document.getElementById('loginBtn');
+  const signupBtn = document.getElementById('signupBtn');
+  const signOutBtn = document.getElementById('signOutBtn');
+  const authScreen = document.getElementById('authScreen');
+  const modeSelectionScreen = document.getElementById('modeSelectionScreen');
+
+  if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+      showAuthScreen('login');
+    });
+  }
+
+  if (signupBtn) {
+    signupBtn.addEventListener('click', () => {
+      showAuthScreen('signup');
+    });
+  }
+
+  if (signOutBtn) {
+    signOutBtn.addEventListener('click', async () => {
+      try {
+        await signOut();
+        alert('Signed out successfully');
+      } catch (error) {
+        alert('Failed to sign out: ' + error.message);
+      }
+    });
+  }
 
   const loginForm = document.getElementById('loginForm');
   const signupForm = document.getElementById('signupForm');
   const showSignupLink = document.getElementById('showSignup');
   const showLoginLink = document.getElementById('showLogin');
-  const signOutBtn = document.getElementById('signOutBtn');
 
   if (loginForm) {
     loginForm.addEventListener('submit', handleLogin);
@@ -26,13 +57,23 @@
       toggleAuthForms('login');
     });
   }
+}
 
-  if (signOutBtn) {
-    signOutBtn.addEventListener('click', handleSignOut);
-  }
+function showAuthScreen(mode) {
+  const authScreen = document.getElementById('authScreen');
+  const modeSelectionScreen = document.getElementById('modeSelectionScreen');
 
-  authManager.onAuthChange(updateAuthUI);
-  updateAuthUI();
+  modeSelectionScreen.style.display = 'none';
+  authScreen.style.display = 'flex';
+  toggleAuthForms(mode);
+}
+
+function hideAuthScreen() {
+  const authScreen = document.getElementById('authScreen');
+  const modeSelectionScreen = document.getElementById('modeSelectionScreen');
+
+  authScreen.style.display = 'none';
+  modeSelectionScreen.style.display = 'flex';
 }
 
 async function handleLogin(e) {
@@ -46,11 +87,11 @@ async function handleLogin(e) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Signing in...';
 
-    await authManager.signIn(email, password);
-    showFeedback('Welcome back!', 'success');
-    goToModeSelection();
+    await signIn(email, password);
+    alert('Welcome back!');
+    hideAuthScreen();
   } catch (error) {
-    showFeedback(error.message || 'Failed to sign in', 'error');
+    alert('Failed to sign in: ' + error.message);
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Sign In';
@@ -66,12 +107,12 @@ async function handleSignup(e) {
   const submitBtn = e.target.querySelector('button[type="submit"]');
 
   if (password !== confirmPassword) {
-    showFeedback('Passwords do not match', 'error');
+    alert('Passwords do not match');
     return;
   }
 
   if (password.length < 6) {
-    showFeedback('Password must be at least 6 characters', 'error');
+    alert('Password must be at least 6 characters');
     return;
   }
 
@@ -79,28 +120,18 @@ async function handleSignup(e) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Creating account...';
 
-    await authManager.signUp(email, password);
-    showFeedback('Account created successfully!', 'success');
-    goToModeSelection();
+    await signUp(email, password);
+    alert('Account created successfully!');
+    hideAuthScreen();
   } catch (error) {
-    showFeedback(error.message || 'Failed to create account', 'error');
+    alert('Failed to create account: ' + error.message);
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Sign Up';
   }
 }
 
-async function handleSignOut() {
-  try {
-    await authManager.signOut();
-    showFeedback('Signed out successfully', 'success');
-    goToModeSelection();
-  } catch (error) {
-    showFeedback('Failed to sign out', 'error');
-  }
-}
-
-export function toggleAuthForms(form) {
+function toggleAuthForms(form) {
   const loginContainer = document.getElementById('loginContainer');
   const signupContainer = document.getElementById('signupContainer');
 
@@ -110,32 +141,5 @@ export function toggleAuthForms(form) {
   } else {
     loginContainer.style.display = 'block';
     signupContainer.style.display = 'none';
-  }
-}
-
-export function updateAuthUI() {
-  const userInfoDiv = document.getElementById('userInfo');
-  const signOutBtn = document.getElementById('signOutBtn');
-
-  if (authManager.isAuthenticated() && userInfoDiv) {
-    const email = authManager.currentUser.email;
-    const isPremium = authManager.hasPremiumAccess();
-
-    userInfoDiv.innerHTML = `
-      <div class="user-email">${email}</div>
-      <div class="user-status">${isPremium ? 'Premium Access' : 'Free Access'}</div>
-    `;
-    userInfoDiv.style.display = 'block';
-
-    if (signOutBtn) {
-      signOutBtn.style.display = 'block';
-    }
-  } else {
-    if (userInfoDiv) {
-      userInfoDiv.style.display = 'none';
-    }
-    if (signOutBtn) {
-      signOutBtn.style.display = 'none';
-    }
   }
 }

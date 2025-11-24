@@ -45,6 +45,8 @@ import { challengeSublevels } from './data/challengeData.js';
 import { tutorialQuestions } from './data/tutorialData.js';
 import { normalizeInput } from './core/answerChecker.js';
 import { renderMath, resetTutorialTipState } from './core/rendering.js';
+import { initAuth } from './auth/authManager.js';
+import { setupAuthUI } from './ui/authUI.js';
 
 // Sounds
 const correctSound = new Audio('correct-sound.mp3');
@@ -801,6 +803,8 @@ function setupButtons() {
 // ==================================================
 
 document.addEventListener("DOMContentLoaded", async () => {
+  await initAuth();
+  setupAuthUI();
   loadAchievements();
   loadLearningProgress();
   loadChallengeProgress();

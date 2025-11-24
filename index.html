@@ -6,6 +6,13 @@
   <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3521738534697536"
      crossorigin="anonymous"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.84.0"
+      }
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-adsense-account" content="ca-pub-3521738534697536">
@@ -52,8 +59,17 @@
         <button id="achievementsBtn">Achievements</button>
         <button id="resetProgressBtn">Reset All Progress</button>
         <button id="adminDashboardBtn" style="display: none;">Admin Dashboard</button>
-        <div id="userInfo" style="display: none;"></div>
-        <button id="signOutBtn" style="display: none;">Sign Out</button>
+
+        <!-- Auth UI -->
+        <div id="authButtons" style="display: flex; gap: 10px; position: absolute; top: 20px; right: 20px;">
+          <button id="loginBtn" class="auth-btn">Login</button>
+          <button id="signupBtn" class="auth-btn">Sign Up</button>
+        </div>
+        <div id="userInfo" style="display: none; position: absolute; top: 20px; right: 20px; align-items: center; gap: 10px;">
+          <span id="userEmail"></span>
+          <button id="signOutBtn">Sign Out</button>
+        </div>
+
         <h1>Welcome to LaTeX Typing Tutor!</h1>
         <p>
           LaTeX is a typesetting system often used to write high quality math notation from simple algebra to integrals.

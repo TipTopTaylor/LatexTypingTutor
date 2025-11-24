@@ -22,7 +22,7 @@ export function showScreen(screenId) {
   }
 
   // Show/hide sidebar based on screen
-  const sidebar = document.getElementById('ad-sidebar');
+  const sidebar = document.getElementById('leaderboard-sidebar');
   const screensWithLeaderboard = ['modeSelectionScreen', 'challengeSublevelScreen', 'tutorInterface'];
 
   if (sidebar) {

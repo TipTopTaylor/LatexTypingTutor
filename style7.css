@@ -65,8 +65,9 @@ body {
   flex-direction: row;
   align-items: flex-start;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
+  gap: var(--spacing-lg);
 }
 
 #main-content {
@@ -75,12 +76,14 @@ body {
 
 #ad-sidebar {
   width: 300px;
+  min-width: 300px;
   margin-left: var(--spacing-lg);
   background: #f9f9f9;
   padding: var(--spacing-md);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   border-radius: var(--spacing-sm);
   display: block;
+  border: 2px solid var(--color-primary);
 }
 
 #leaderboard-container {

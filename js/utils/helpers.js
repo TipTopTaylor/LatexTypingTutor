@@ -72,12 +72,16 @@ export function formatSublevelName(key) {
 
 export function formatChallengeName(key) {
   const names = {
-    challenge1: "Speed Challenge 1",
-    challenge2: "Speed Challenge 2",
-    challenge3: "Speed Challenge 3",
-    challenge4: "Speed Challenge 4",
-    challenge5: "Speed Challenge 5",
-    challenge6: "Speed Challenge 6"
+    challenge1: "Challenge 1: Basic Math",
+    challenge2: "Challenge 2: Greek Letters",
+    challenge3: "Challenge 3: Subscripts & Powers",
+    challenge4: "Challenge 4: Greek + Variables",
+    challenge5: "Challenge 5: Integrals",
+    challenge6: "Challenge 6: Definite Integrals",
+    challenge7: "Challenge 7: Summations",
+    challenge8: "Challenge 8: Complex Sums",
+    challenge9: "Challenge 9: Advanced Calculus",
+    challenge10: "Challenge 10: Masters"
   };
   return names[key] || key;
 }

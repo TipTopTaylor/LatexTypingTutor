@@ -1,4 +1,9 @@
 {
+  "name": "latex-typing-tutor",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo 'No build step needed - static site' && mkdir -p dist && cp -r . dist/ && rm -rf dist/node_modules dist/.git dist/dist"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.84.0"
   }

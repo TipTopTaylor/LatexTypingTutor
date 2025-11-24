@@ -52,6 +52,19 @@ export function getCurrentUser() {
   return currentUser;
 }
 
+export async function hasPremiumAccess() {
+  if (!currentUser) return false;
+
+  const { data, error } = await supabase
+    .from('user_profiles')
+    .select('has_premium_access')
+    .eq('id', currentUser.id)
+    .maybeSingle();
+
+  if (error || !data) return false;
+  return data.has_premium_access;
+}
+
 function updateAuthUI(isLoggedIn) {
   const authButtons = document.getElementById('authButtons');
   const userInfo = document.getElementById('userInfo');

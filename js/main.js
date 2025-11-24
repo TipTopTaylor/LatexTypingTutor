@@ -45,7 +45,7 @@ import { challengeSublevels } from './data/challengeData.js';
 import { tutorialQuestions } from './data/tutorialData.js';
 import { normalizeInput } from './core/answerChecker.js';
 import { renderMath, resetTutorialTipState } from './core/rendering.js';
-import { initAuth } from './auth/authManager.js';
+import { initAuth, hasPremiumAccess } from './auth/authManager.js';
 import { setupAuthUI } from './ui/authUI.js';
 
 // Sounds
@@ -449,7 +449,13 @@ function checkAllChallengeAchievements() {
 // Endless Mode Functions
 // ==================================================
 
-function startEndlessMode() {
+async function startEndlessMode() {
+  const premium = await hasPremiumAccess();
+  if (!premium) {
+    alert('Endless mode requires a premium account. Please contact us to get your university email whitelisted.');
+    return;
+  }
+
   const accessMessage = getAccessMessage('endless');
 
   if (accessMessage) {
@@ -489,7 +495,15 @@ function nextEndlessQuestion() {
 // Mode Start Functions
 // ==================================================
 
-function startLearningMode(level, sublevel) {
+async function startLearningMode(level, sublevel) {
+  if (level !== 1) {
+    const premium = await hasPremiumAccess();
+    if (!premium) {
+      alert('Level 2 and beyond require a premium account. Please contact us to get your university email whitelisted.');
+      return;
+    }
+  }
+
   const levelId = `${level}-${sublevel}`;
   const accessMessage = getAccessMessage(levelId);
 
@@ -531,7 +545,13 @@ function startTutorialMode() {
   updateTutorialTip();
 }
 
-function startChallengeMode(challenge) {
+async function startChallengeMode(challenge) {
+  const premium = await hasPremiumAccess();
+  if (!premium) {
+    alert('Challenge mode requires a premium account. Please contact us to get your university email whitelisted.');
+    return;
+  }
+
   const levelId = `challenge-${challenge}`;
   const accessMessage = getAccessMessage(levelId);
 

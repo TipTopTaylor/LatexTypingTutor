@@ -4,7 +4,7 @@
 import { allSublevels } from '../data/levelData.js';
 import { challengeSublevels } from '../data/challengeData.js';
 import { tutorialQuestions } from '../data/tutorialData.js';
-import { getShell } from '../utils/helpers.js';
+import { getHintShell } from '../utils/helpers.js';
 
 let tutorialMultiplicationTipShown = false;
 let tutorialFractionTipShown = false;
@@ -191,7 +191,7 @@ export function renderMath(currentMode, currentLevel, currentSubLevel, currentIn
     }
     if (!custom) {
       tokenEl.addEventListener("mouseover", () => {
-        document.getElementById("syntaxHintContainer").textContent = getShell(token) || token;
+        document.getElementById("syntaxHintContainer").textContent = getHintShell(token) || token;
       });
       tokenEl.addEventListener("mouseout", () => {
         document.getElementById("syntaxHintContainer").textContent = "";
@@ -254,7 +254,7 @@ export function renderMath(currentMode, currentLevel, currentSubLevel, currentIn
             setTimeout(() => { tipElem.classList.remove("animate-tip"); }, 600);
             tutorialFractionTipShown = true;
           } else {
-            document.getElementById("syntaxHintContainer").textContent = getShell(token) || token;
+            document.getElementById("syntaxHintContainer").textContent = getHintShell(token) || token;
           }
         });
         tokenEl.addEventListener("mouseout", () => {

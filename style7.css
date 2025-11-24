@@ -759,6 +759,43 @@ button:hover,
 }
 
 /* --------------------------
+   Achievement Popups
+-------------------------- */
+.achievement-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--spacing-sm);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  font-size: 1.1rem;
+  font-weight: bold;
+  white-space: pre-line;
+  text-align: center;
+  min-width: 250px;
+  transition: opacity 0.5s ease;
+  animation: slideInRight 0.5s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.dark-mode .achievement-popup {
+  background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+}
+
+/* --------------------------
    LaTeX Animation (Loading)
 -------------------------- */
 #latexAnimation {

@@ -28,8 +28,11 @@ achievementSound.load();
 
 export function loadAchievements() {
   const saved = loadFromStorage("achievements", {});
-  achievements = { ...achievements, ...saved };
-  updateAchievementsDisplay();
+  Object.keys(saved).forEach(key => {
+    achievements[key] = saved[key];
+  });
+  // Delay display update to ensure DOM is ready
+  setTimeout(() => updateAchievementsDisplay(), 100);
 }
 
 export function saveAchievements() {
@@ -63,9 +66,15 @@ export function unlockAchievements(achievementKeys) {
 }
 
 export function updateAchievementsDisplay() {
-  document.querySelectorAll(".achievement").forEach(el => {
+  const achievementElements = document.querySelectorAll(".achievement");
+  if (achievementElements.length === 0) {
+    console.warn('No achievement elements found in DOM');
+    return;
+  }
+
+  achievementElements.forEach(el => {
     let achKey = el.getAttribute("data-achievement");
-    if (achievements[achKey]) {
+    if (achievements[achKey] === true) {
       el.classList.add("unlocked");
       el.classList.remove("locked");
     } else {

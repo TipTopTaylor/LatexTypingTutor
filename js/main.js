@@ -212,6 +212,10 @@ window.checkAnswer = function() {
     correctLatex = normalizeInput(tutorialQuestions[tutorialIndex].latex);
   }
 
+  console.log('User input:', input);
+  console.log('Correct latex:', correctLatex);
+  console.log('Match:', input === correctLatex);
+
   if (input === correctLatex) {
     if (inputField.hasAttribute("data-guide")) {
       inputField.removeAttribute("data-guide");

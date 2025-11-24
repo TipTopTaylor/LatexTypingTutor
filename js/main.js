@@ -497,10 +497,10 @@ function nextEndlessQuestion() {
 // ==================================================
 
 async function startLearningMode(level, sublevel) {
-  if (level !== 1) {
+  if (level !== 1 && level !== 'level1') {
     const premium = await hasPremiumAccess();
     if (!premium) {
-      alert('Level 2 and beyond require a premium account. Please contact us to get your university email whitelisted.');
+      alert('Levels beyond Tutorial Mode require a premium account. Please contact us to get your university email whitelisted.');
       return;
     }
   }

@@ -795,7 +795,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupDarkModeListeners();
   updateLevelCompletion();
   setupButtons();
-  startLatexAnimation();
 });
 
 window.startLearningMode = startLearningMode;

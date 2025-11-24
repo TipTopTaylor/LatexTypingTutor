@@ -22,7 +22,17 @@ export async function submitChallengeScore(challengeLevel, timeInSeconds) {
       return { success: true, skipped: true };
     }
 
-    const displayName = profile?.display_name || `User${user.id.slice(0, 6)}`;
+    let displayName = profile?.display_name;
+
+    // Prompt for display name if not set
+    if (!displayName) {
+      displayName = await promptForDisplayName();
+      if (displayName) {
+        await saveDisplayName(displayName);
+      } else {
+        displayName = `User${user.id.slice(0, 6)}`;
+      }
+    }
 
     const { error } = await supabase
       .from('challenge_leaderboard')
@@ -44,6 +54,66 @@ export async function submitChallengeScore(challengeLevel, timeInSeconds) {
   } catch (err) {
     console.error('Exception submitting score:', err);
     return { success: false, error: err.message };
+  }
+}
+
+async function promptForDisplayName() {
+  return new Promise((resolve) => {
+    const modal = document.createElement('div');
+    modal.className = 'display-name-modal';
+    modal.innerHTML = `
+      <div class="display-name-content">
+        <h2>Leaderboard Name</h2>
+        <p>Enter your display name for the leaderboard:</p>
+        <input type="text" id="displayNameInput" maxlength="20" placeholder="Your Name" />
+        <div class="modal-buttons">
+          <button id="saveDisplayName" class="btn-primary">Save</button>
+          <button id="skipDisplayName" class="btn-secondary">Skip</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    const input = document.getElementById('displayNameInput');
+    input.focus();
+
+    const save = () => {
+      const name = input.value.trim();
+      if (name.length > 0) {
+        document.body.removeChild(modal);
+        resolve(name);
+      }
+    };
+
+    const skip = () => {
+      document.body.removeChild(modal);
+      resolve(null);
+    };
+
+    document.getElementById('saveDisplayName').addEventListener('click', save);
+    document.getElementById('skipDisplayName').addEventListener('click', skip);
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') save();
+    });
+  });
+}
+
+async function saveDisplayName(displayName) {
+  const user = getCurrentUser();
+  if (!user) return;
+
+  try {
+    const { error } = await supabase
+      .from('user_profiles')
+      .update({ display_name: displayName })
+      .eq('id', user.id);
+
+    if (error) {
+      console.error('Error saving display name:', error);
+    }
+  } catch (err) {
+    console.error('Exception saving display name:', err);
   }
 }
 

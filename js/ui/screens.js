@@ -20,6 +20,18 @@ export function showScreen(screenId) {
   if (targetScreen) {
     targetScreen.style.display = 'flex';
   }
+
+  // Show/hide sidebar based on screen
+  const sidebar = document.getElementById('ad-sidebar');
+  const screensWithLeaderboard = ['modeSelectionScreen', 'challengeSublevelScreen', 'tutorInterface'];
+
+  if (sidebar) {
+    if (screensWithLeaderboard.includes(screenId)) {
+      sidebar.style.display = 'block';
+    } else {
+      sidebar.style.display = 'none';
+    }
+  }
 }
 
 export function goToAuthScreen() {

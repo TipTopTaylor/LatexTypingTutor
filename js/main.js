@@ -2,11 +2,6 @@
 // This replaces legacy.js with a proper modular structure
 
 // Import all modules
-import { getShell, playSound } from './utils/helpers.js';
-import { authManager } from './auth/authManager.js';
-import { initializeAuthUI } from './ui/authUI.js';
-import { canAccessLevel, getAccessMessage } from './auth/accessControl.js';
-import { initializeAdminDashboard } from './admin/adminDashboard.js';
 import {
   loadAchievements,
   unlockAchievement,
@@ -15,9 +10,6 @@ import {
   updateAchievementsDisplay,
   formatAchievementName
 } from './achievements/achievementSystem.js';
-import { allSublevels, completedSublevels, formatSublevelName } from './data/levelData.js';
-import { challengeSublevels, completedChallenges, formatChallengeName } from './data/challengeData.js';
-import { tutorialQuestions } from './data/tutorialData.js';
 import {
   loadLearningProgress,
   saveLearningProgress,
@@ -28,9 +20,6 @@ import {
   loadBestTime,
   saveBestTime
 } from './data/progress.js';
-import { applyDarkMode } from './ui/darkMode.js';
-import { tokenizeLatex, groupTokens, renderMath, resetTutorialTipState } from './core/rendering.js';
-import { normalizeInput } from './core/answerChecker.js';
 import {
   flashElement,
   triggerConfetti,
@@ -38,7 +27,6 @@ import {
   showTimerPopup,
   resetInputAndPreview
 } from './ui/feedback.js';
-import { startLatexAnimation } from './ui/animation.js';
 
 // Sounds
 const correctSound = new Audio('correct-sound.mp3');

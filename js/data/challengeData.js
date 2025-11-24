@@ -1,5 +1,4 @@
  // Challenge Mode Data
-export const challengeSublevels = {
    challenge1: [
      { latex: "7+3-5\\times2", math: "7+3-5\\times2" },
      { latex: "\\frac{8-3}{2+1}", math: "\\frac{8-3}{2+1}" },
@@ -125,7 +124,6 @@ export const challengeSublevels = {
  
 
 // Challenge completion tracking
-export const completedChallenges = {
   challenge1: false,
   challenge2: false,
   challenge3: false,
@@ -138,7 +136,6 @@ export const completedChallenges = {
   challenge10: false
 };
 
-export function formatChallengeName(key) {
   const names = {
     challenge1: "Challenge 1",
     challenge2: "Challenge 2",

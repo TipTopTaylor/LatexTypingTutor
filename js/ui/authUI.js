@@ -1,8 +1,4 @@
-import { authManager } from '../auth/authManager.js';
-import { goToModeSelection } from './screens.js';
-import { showFeedback } from './feedback.js';
 
-export function initializeAuthUI() {
   const loginForm = document.getElementById('loginForm');
   const signupForm = document.getElementById('signupForm');
   const showSignupLink = document.getElementById('showSignup');
@@ -104,7 +100,7 @@ async function handleSignOut() {
   }
 }
 
-function toggleAuthForms(form) {
+export function toggleAuthForms(form) {
   const loginContainer = document.getElementById('loginContainer');
   const signupContainer = document.getElementById('signupContainer');
 
@@ -117,7 +113,7 @@ function toggleAuthForms(form) {
   }
 }
 
-function updateAuthUI() {
+export function updateAuthUI() {
   const userInfoDiv = document.getElementById('userInfo');
   const signOutBtn = document.getElementById('signOutBtn');
 

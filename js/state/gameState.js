@@ -1,6 +1,5 @@
 // Global Game State Management
 
-export const state = {
   // Mode tracking
   currentMode: "",
   currentLevel: '',
@@ -25,7 +24,6 @@ export const state = {
   challengeTimerSeconds: 0
 };
 
-export function resetState() {
   state.currentMode = "";
   state.currentIndex = 0;
   state.tutorialIndex = 0;
@@ -33,18 +31,14 @@ export function resetState() {
   state.endlessStreak = 0;
 }
 
-export function setMode(mode) {
   state.currentMode = mode;
 }
 
-export function setLevel(level) {
   state.currentLevel = level;
 }
 
-export function setSubLevel(sublevel) {
   state.currentSubLevel = sublevel;
 }
 
-export function setChallenge(challenge) {
   state.currentChallenge = challenge;
 }

@@ -1,5 +1,4 @@
 // Level Data Definitions
-export const allSublevels = {
    level1: {
      additionSubtraction: [
        { latex: "2+2", math: "2+2" },
@@ -354,7 +353,7 @@ export const allSublevels = {
    ]
  };
  
- export const completedSublevels = {
+ const completedSublevels = {
    level1: {
      additionSubtraction: false,
      multiplicationDivision: false,
@@ -395,7 +394,6 @@ export const allSublevels = {
    }
  };
 
-export function formatSublevelName(key) {
   const names = {
     additionSubtraction: "Addition & Subtraction",
     multiplicationDivision: "Multiplication & Division",

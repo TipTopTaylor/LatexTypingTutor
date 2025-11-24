@@ -1,4 +1,0 @@
-const supabaseUrl = 'https://fldudwmajfghgdopkxvr.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsZHVkd21hamZnaGdkb3BreHZyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI0MDc1NTUsImV4cCI6MjA0Nzk4MzU1NX0.0QrpCW5xwsj_-lKt1IsFYvlVxlDlOjmZjdHWd5FJLuQ';
-
-export const supabase = window.supabase.createClient(supabaseUrl, supabaseAnonKey);

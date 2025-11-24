@@ -1,16 +1,11 @@
 // Math Rendering System
 // Handles tokenization, grouping, and rendering of LaTeX expressions
 
-import { getShell } from '../utils/helpers.js';
-import { allSublevels } from '../data/levelData.js';
-import { challengeSublevels } from '../data/challengeData.js';
-import { tutorialQuestions } from '../data/tutorialData.js';
 
 // Tutorial state (will be moved to state management later)
 let tutorialMultiplicationTipShown = false;
 let tutorialFractionTipShown = false;
 
-export function tokenizeLatex(input) {
   const tokens = [];
   let i = 0;
 
@@ -146,7 +141,6 @@ export function tokenizeLatex(input) {
   return tokens;
 }
 
-export function groupTokens(tokens) {
   const grouped = [];
   let i = 0;
   while (i < tokens.length) {
@@ -171,7 +165,6 @@ export function groupTokens(tokens) {
   return grouped;
 }
 
-export function renderMath(currentMode, currentLevel, currentSubLevel, currentIndex, currentChallenge, challengeIndex, tutorialIndex, currentExpression, updateProgress, updateTutorialTip) {
   const mathContainer = document.getElementById("math-display-container");
   mathContainer.innerHTML = "";
 
@@ -274,7 +267,6 @@ export function renderMath(currentMode, currentLevel, currentSubLevel, currentIn
   }
 }
 
-export function resetTutorialTipState() {
   tutorialMultiplicationTipShown = false;
   tutorialFractionTipShown = false;
 }

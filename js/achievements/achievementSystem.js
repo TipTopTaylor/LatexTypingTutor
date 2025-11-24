@@ -1,9 +1,6 @@
 // Achievement System
-import { saveToStorage, loadFromStorage } from '../utils/storage.js';
-import { playSound } from '../utils/helpers.js';
 
 // Achievement state
-export let achievements = {
   challengeUnder2: false,
   challengeUnder1: false,
   challengeAllUnder5: false,
@@ -23,20 +20,17 @@ let popupQueue = [];
 let isPopupActive = false;
 
 // Sound for achievements
-const achievementSound = new Audio('achievement-sound.mp3');
+export const achievementSound = new Audio('achievement-sound.mp3');
 achievementSound.load();
 
-export function loadAchievements() {
   const saved = loadFromStorage("achievements", {});
   achievements = { ...achievements, ...saved };
   updateAchievementsDisplay();
 }
 
-export function saveAchievements() {
   saveToStorage("achievements", achievements);
 }
 
-export function unlockAchievement(name) {
   if (!achievements[name]) {
     achievements[name] = true;
     saveAchievements();
@@ -46,7 +40,6 @@ export function unlockAchievement(name) {
   }
 }
 
-export function unlockAchievements(achievementKeys) {
   let unlockedNames = [];
   achievementKeys.forEach(key => {
     if (!achievements[key]) {
@@ -62,7 +55,6 @@ export function unlockAchievements(achievementKeys) {
   }
 }
 
-export function updateAchievementsDisplay() {
   document.querySelectorAll(".achievement").forEach(el => {
     let achKey = el.getAttribute("data-achievement");
     if (achievements[achKey]) {
@@ -71,14 +63,13 @@ export function updateAchievementsDisplay() {
   });
 }
 
-function checkForCompletionist() {
+export function checkForCompletionist() {
   const keysToCheck = Object.keys(achievements).filter(key => key !== "completionist");
   if (keysToCheck.every(key => achievements[key]) && !achievements.completionist) {
     unlockAchievement("completionist");
   }
 }
 
-export function formatAchievementName(key) {
   const names = {
     finishLearning: "The Learner 🏆",
     finishChallenge: "The Challenger 🥇",
@@ -96,7 +87,7 @@ export function formatAchievementName(key) {
   return names[key] || key;
 }
 
-function showNextPopup() {
+export function showNextPopup() {
   if (popupQueue.length === 0) {
     isPopupActive = false;
     return;
@@ -118,13 +109,13 @@ function showNextPopup() {
   }, 4000);
 }
 
-function queuePopup(message) {
+export function queuePopup(message) {
   popupQueue.push(message);
   if (!isPopupActive) {
     showNextPopup();
   }
 }
 
-function showAchievementPopup(message) {
+export function showAchievementPopup(message) {
   queuePopup(message);
 }

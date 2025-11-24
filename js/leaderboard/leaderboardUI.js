@@ -10,7 +10,7 @@ export function initLeaderboardUI() {
 
   sidebar.innerHTML = `
     <div id="leaderboard-container">
-      <h3>Today's Best Times</h3>
+      <h3>Daily Leaderboard</h3>
       <select id="leaderboard-challenge-select" class="leaderboard-select">
         <option value="challenge1">Challenge 1: Basic Math</option>
         <option value="challenge2">Challenge 2: Greek Letters</option>

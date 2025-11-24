@@ -58,6 +58,7 @@ export async function getDailyLeaderboard(challengeLevel, limit = 10) {
   }
 
   try {
+    console.log('Fetching leaderboard for:', challengeLevel);
     const { data, error } = await supabase.rpc('get_daily_leaderboard', {
       challenge_level_param: challengeLevel,
       limit_param: limit
@@ -68,6 +69,7 @@ export async function getDailyLeaderboard(challengeLevel, limit = 10) {
       return [];
     }
 
+    console.log('Leaderboard data received:', data);
     leaderboardCache[cacheKey] = data || [];
     cacheTimestamps[cacheKey] = now;
     return data || [];

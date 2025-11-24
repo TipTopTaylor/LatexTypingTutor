@@ -18,7 +18,9 @@ import {
   loadBestEndlessStreak,
   saveBestEndlessStreak,
   loadBestTime,
-  saveBestTime
+  saveBestTime,
+  completedSublevels,
+  completedChallenges
 } from './data/progress.js';
 import {
   flashElement,
@@ -27,6 +29,17 @@ import {
   showTimerPopup,
   resetInputAndPreview
 } from './ui/feedback.js';
+import {
+  loadDarkModePreference,
+  setupDarkModeListeners
+} from './ui/darkMode.js';
+import {
+  playSound
+} from './utils/helpers.js';
+import { allSublevels } from './data/levelData.js';
+import { challengeSublevels } from './data/challengeData.js';
+import { tutorialQuestions } from './data/tutorialData.js';
+import { normalizeInput } from './core/answerChecker.js';
 
 // Sounds
 const correctSound = new Audio('correct-sound.mp3');
@@ -693,14 +706,7 @@ function setupButtons() {
     }
   });
 
-  const darkModeToggles = document.querySelectorAll('.darkModeToggle');
-  darkModeToggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const currentMode = localStorage.getItem('darkMode') === 'true';
-      localStorage.setItem('darkMode', !currentMode);
-      applyDarkMode();
-    });
-  });
+  setupDarkModeListeners();
 
   document.getElementById("startTutorialBtn")?.addEventListener("click", startTutorialMode);
   document.getElementById("startEndlessBtn")?.addEventListener("click", startEndlessMode);
@@ -782,24 +788,15 @@ function setupButtons() {
 // ==================================================
 
 document.addEventListener("DOMContentLoaded", async () => {
-  await authManager.initialize();
-  initializeAuthUI();
-  initializeAdminDashboard();
   loadAchievements();
   loadLearningProgress();
   loadChallengeProgress();
-  applyDarkMode();
+  loadDarkModePreference();
+  setupDarkModeListeners();
   updateLevelCompletion();
   setupButtons();
   startLatexAnimation();
-  updateActivityTracking();
 });
-
-function updateActivityTracking() {
-  setInterval(() => {
-    authManager.updateLastActive();
-  }, 5 * 60 * 1000);
-}
 
 window.startLearningMode = startLearningMode;
 window.startTutorialMode = startTutorialMode;

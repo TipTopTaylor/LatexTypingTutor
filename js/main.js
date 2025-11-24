@@ -29,6 +29,7 @@ import {
   showTimerPopup,
   resetInputAndPreview
 } from './ui/feedback.js';
+import { startLatexAnimation } from './ui/animation.js';
 import {
   loadDarkModePreference,
   setupDarkModeListeners
@@ -795,6 +796,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   setupDarkModeListeners();
   updateLevelCompletion();
   setupButtons();
+  startLatexAnimation();
 });
 
 window.startLearningMode = startLearningMode;

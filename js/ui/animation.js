@@ -1,9 +1,11 @@
 // LaTeX Animation on Introduction Screen
 
 export const targetLatex = "\\sum_{n=1}^{\\infty} \\frac{1}{n^{2}}";
-let i = 0, stage = 0;
-let lastTimestamp = 0;
-let delay = 100;
+
+export function startLatexAnimation() {
+  let i = 0, stage = 0;
+  let lastTimestamp = 0;
+  let delay = 100;
 
   const animationDiv = document.getElementById('latexAnimation');
   const mathRendered = document.getElementById('mathRendered');

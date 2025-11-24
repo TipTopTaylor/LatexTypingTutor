@@ -2,7 +2,7 @@
   "name": "latex-typing-tutor",
   "version": "1.0.0",
   "scripts": {
-    "build": "echo 'No build step needed - static site' && mkdir -p dist && cp -r . dist/ && rm -rf dist/node_modules dist/.git dist/dist"
+    "build": "echo 'No build step needed - static site' && rm -rf dist && mkdir -p dist && cp -r *.html *.css *.mp3 *.txt js dist/ 2>/dev/null || true"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.84.0"

@@ -1,6 +1,9 @@
 // Achievement System
+import { saveToStorage, loadFromStorage } from '../utils/storage.js';
+import { playSound } from '../utils/helpers.js';
 
 // Achievement state
+export let achievements = {
   challengeUnder2: false,
   challengeUnder1: false,
   challengeAllUnder5: false,
@@ -23,14 +26,17 @@ let isPopupActive = false;
 export const achievementSound = new Audio('achievement-sound.mp3');
 achievementSound.load();
 
+export function loadAchievements() {
   const saved = loadFromStorage("achievements", {});
   achievements = { ...achievements, ...saved };
   updateAchievementsDisplay();
 }
 
+export function saveAchievements() {
   saveToStorage("achievements", achievements);
 }
 
+export function unlockAchievement(name) {
   if (!achievements[name]) {
     achievements[name] = true;
     saveAchievements();
@@ -40,6 +46,7 @@ achievementSound.load();
   }
 }
 
+export function unlockAchievements(achievementKeys) {
   let unlockedNames = [];
   achievementKeys.forEach(key => {
     if (!achievements[key]) {
@@ -55,6 +62,7 @@ achievementSound.load();
   }
 }
 
+export function updateAchievementsDisplay() {
   document.querySelectorAll(".achievement").forEach(el => {
     let achKey = el.getAttribute("data-achievement");
     if (achievements[achKey]) {
@@ -70,6 +78,7 @@ export function checkForCompletionist() {
   }
 }
 
+export function formatAchievementName(key) {
   const names = {
     finishLearning: "The Learner 🏆",
     finishChallenge: "The Challenger 🥇",

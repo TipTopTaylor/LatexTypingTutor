@@ -1,5 +1,7 @@
 // Level Data Definitions
-   level1: {
+
+export const allSublevels = {
+  level1: {
      additionSubtraction: [
        { latex: "2+2", math: "2+2" },
        { latex: "6+3-2=7", math: "6+3-2=7" },

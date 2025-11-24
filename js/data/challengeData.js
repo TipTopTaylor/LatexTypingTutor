@@ -1,5 +1,7 @@
- // Challenge Mode Data
-   challenge1: [
+// Challenge Mode Data
+
+export const challengeSublevels = {
+  challenge1: [
      { latex: "7+3-5\\times2", math: "7+3-5\\times2" },
      { latex: "\\frac{8-3}{2+1}", math: "\\frac{8-3}{2+1}" },
      { latex: "(4+5)\\div3-2", math: "(4+5)\\div3-2" },

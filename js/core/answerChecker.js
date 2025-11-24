@@ -1,5 +1,10 @@
 // Answer Checking and Validation
+import { state } from '../state/gameState.js';
+import { challengeSublevels } from '../data/challengeData.js';
+import { allSublevels } from '../data/levelData.js';
+import { tutorialQuestions } from '../data/tutorialData.js';
 
+export function normalizeInput(input) {
   input = input.replace(/\s+/g, '')
                .replace(/\{\s*/g, '{')
                .replace(/\s*\}/g, '}')
@@ -8,6 +13,7 @@
   return input;
 }
 
+export function checkAnswer(userInput) {
   const input = normalizeInput(userInput);
   let correctLatex = "";
 

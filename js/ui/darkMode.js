@@ -1,9 +1,11 @@
 // Dark Mode Management
 
+export function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
   localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
 }
 
+export function loadDarkModePreference() {
   if (localStorage.getItem("darkMode") === "true") {
     document.body.classList.add("dark-mode");
   } else {
@@ -11,6 +13,7 @@
   }
 }
 
+export function setupDarkModeListeners() {
   document.querySelectorAll(".darkModeToggle").forEach(button => {
     button.removeEventListener("click", toggleDarkMode);
     button.addEventListener("click", toggleDarkMode);

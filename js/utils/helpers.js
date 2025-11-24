@@ -1,5 +1,6 @@
 // Utility Helper Functions
 
+export function getHintShell(token) {
   // Returns a shell (syntax hint) for a given LaTeX token.
   if (/\\begin\{pmatrix\}/.test(token)) {
     return '\\begin{pmatrix} 1 & 0 \\\\ 0 & 1\\end{pmatrix}';
@@ -37,6 +38,7 @@
   return token;
 }
 
+export function playSound(audio) {
   audio.currentTime = 0;
   audio.play().catch(err => console.log("Error playing sound:", err));
 }

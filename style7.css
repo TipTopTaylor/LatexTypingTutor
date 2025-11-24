@@ -679,11 +679,40 @@ button:hover,
   border: 2px solid transparent;
   transition: var(--transition);
   position: relative;
+  cursor: help;
 }
 
 .achievement:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.achievement::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 1000;
+}
+
+.achievement:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.dark-mode .achievement::after {
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
 }
 
 .achievement.unlocked {

@@ -261,6 +261,11 @@ button:hover,
 #resetProgressBtn {
   top: calc(var(--spacing-md) + 45px);
 }
+#achievementsBtn,
+#resetProgressBtn {
+  right: auto !important;
+  left: var(--spacing-md) !important;
+}
 
 /* --------------------------
    Toggle and Timer Container
@@ -1239,4 +1244,5 @@ body.dark-mode .users-table td {
 body.dark-mode .users-table tbody tr:hover {
   background: var(--bg-dark);
 }
+
 

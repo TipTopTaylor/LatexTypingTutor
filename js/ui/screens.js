@@ -1,14 +1,14 @@
 // Screen Management - Show/Hide different screens
 
 export function showScreen(screenId) {
-  // Hide all screens
   const screens = [
     'modeSelectionScreen',
     'learningLevelScreen',
     'sublevelScreen',
     'challengeSublevelScreen',
     'endlessModeScreen',
-    'tutorInterface'
+    'tutorInterface',
+    'authScreen'
   ];
 
   screens.forEach(id => {
@@ -16,11 +16,14 @@ export function showScreen(screenId) {
     if (el) el.style.display = 'none';
   });
 
-  // Show the requested screen
   const targetScreen = document.getElementById(screenId);
   if (targetScreen) {
     targetScreen.style.display = 'flex';
   }
+}
+
+export function goToAuthScreen() {
+  showScreen('authScreen');
 }
 
 export function goToModeSelection() {

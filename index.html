@@ -18,11 +18,42 @@
   <div class="page-container">
     <!-- Main Content Column -->
     <div id="main-content">
+      <!-- Auth Screen -->
+      <div id="authScreen" style="display: none;">
+        <div id="userInfo" style="display: none;"></div>
+        <button id="signOutBtn" style="display: none;">Sign Out</button>
+
+        <div id="loginContainer">
+          <h1>Sign In</h1>
+          <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="University Email" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Sign In</button>
+          </form>
+          <p>Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+        </div>
+
+        <div id="signupContainer" style="display: none;">
+          <h1>Create Account</h1>
+          <p>Use your university email to get premium access</p>
+          <form id="signupForm">
+            <input type="email" id="signupEmail" placeholder="University Email (e.g., name@university.edu)" required>
+            <input type="password" id="signupPassword" placeholder="Password (min 6 characters)" required>
+            <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+          </form>
+          <p>Already have an account? <a href="#" id="showLogin">Sign in</a></p>
+        </div>
+      </div>
+
       <!-- Mode Selection / Introduction Screen -->
       <div id="modeSelectionScreen">
         <!-- Achievements Button in Top Left -->
         <button id="achievementsBtn">Achievements</button>
         <button id="resetProgressBtn">Reset All Progress</button>
+        <button id="adminDashboardBtn" style="display: none;">Admin Dashboard</button>
+        <div id="userInfo" style="display: none;"></div>
+        <button id="signOutBtn" style="display: none;">Sign Out</button>
         <h1>Welcome to LaTeX Typing Tutor!</h1>
         <p>
           LaTeX is a typesetting system often used to write high quality math notation from simple algebra to integrals.
@@ -124,7 +155,14 @@
           </div>
         </div>
       </div>
-      
+
+      <!-- Admin Modal -->
+      <div id="adminModal" class="modal" style="display: none;">
+        <div class="modal-content admin-modal-content">
+          <div id="adminModalContent"></div>
+        </div>
+      </div>
+
       <!-- Learning Mode Level Selection Screen -->
       <div id="learningLevelScreen" style="display: none;">
         <h2>Select a Level</h2>

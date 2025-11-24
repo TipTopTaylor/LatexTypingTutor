@@ -995,3 +995,247 @@ button:hover,
     font-size: 0.9rem;
   }
 }
+
+#authScreen {
+  background: var(--bg-white);
+  padding: var(--spacing-xxl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow);
+  max-width: 450px;
+  margin: 50px auto;
+  flex-direction: column;
+  align-items: center;
+}
+
+#authScreen h1 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+}
+
+#authScreen p {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-dark);
+}
+
+#authScreen form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+#authScreen input {
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#authScreen button[type="submit"] {
+  padding: var(--spacing-md);
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#authScreen button[type="submit"]:hover {
+  background-color: var(--color-primary-hover);
+}
+
+#authScreen button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#authScreen a {
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#authScreen a:hover {
+  text-decoration: underline;
+}
+
+#userInfo {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  background: var(--bg-white);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  font-size: 0.9rem;
+}
+
+#userInfo .user-email {
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+#userInfo .user-status {
+  font-size: 0.8rem;
+  color: var(--color-success);
+}
+
+#signOutBtn {
+  position: absolute;
+  top: var(--spacing-md);
+  right: 200px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+#signOutBtn:hover {
+  background-color: #c82333;
+}
+
+body.dark-mode #authScreen {
+  background: var(--bg-dark-secondary);
+}
+
+body.dark-mode #authScreen h1,
+body.dark-mode #authScreen p {
+  color: var(--text-dark-mode);
+}
+
+body.dark-mode #authScreen input {
+  background: var(--bg-dark);
+  color: var(--text-dark-mode);
+  border-color: var(--border-dark);
+}
+
+body.dark-mode #userInfo {
+  background: var(--bg-dark-secondary);
+}
+
+body.dark-mode #userInfo .user-email {
+  color: var(--text-dark-mode);
+}
+
+.admin-modal-content {
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin: var(--spacing-xl) 0;
+}
+
+.stat-card {
+  background: var(--bg-light);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 2rem;
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-primary);
+}
+
+.stat-card p {
+  margin: 0;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: var(--spacing-sm);
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-success);
+  transition: width 0.3s ease;
+}
+
+.users-table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  margin: var(--spacing-lg) 0;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.users-table th {
+  background: var(--bg-light);
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+}
+
+.users-table tbody tr:hover {
+  background: var(--bg-light);
+}
+
+.close-admin-btn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: var(--spacing-lg);
+}
+
+.close-admin-btn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+body.dark-mode .stat-card {
+  background: var(--bg-dark);
+}
+
+body.dark-mode .stat-card p {
+  color: var(--text-dark-mode);
+}
+
+body.dark-mode .users-table th {
+  background: var(--bg-dark);
+  color: var(--text-dark-mode);
+}
+
+body.dark-mode .users-table td {
+  color: var(--text-dark-mode);
+  border-bottom-color: var(--border-dark);
+}
+
+body.dark-mode .users-table tbody tr:hover {
+  background: var(--bg-dark);
+}

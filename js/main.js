@@ -3,6 +3,10 @@
 
 // Import all modules
 import { getShell, playSound } from './utils/helpers.js';
+import { authManager } from './auth/authManager.js';
+import { initializeAuthUI } from './ui/authUI.js';
+import { canAccessLevel, getAccessMessage } from './auth/accessControl.js';
+import { initializeAdminDashboard } from './admin/adminDashboard.js';
 import {
   loadAchievements,
   unlockAchievement,
@@ -430,6 +434,16 @@ function checkAllChallengeAchievements() {
 // ==================================================
 
 function startEndlessMode() {
+  const accessMessage = getAccessMessage('endless');
+
+  if (accessMessage) {
+    import('./ui/screens.js').then(({ goToAuthScreen }) => {
+      alert(accessMessage);
+      goToAuthScreen();
+    });
+    return;
+  }
+
   currentMode = "endless";
   endlessStreak = 0;
   document.getElementById("modeSelectionScreen").style.display = "none";
@@ -460,6 +474,17 @@ function nextEndlessQuestion() {
 // ==================================================
 
 function startLearningMode(level, sublevel) {
+  const levelId = `${level}-${sublevel}`;
+  const accessMessage = getAccessMessage(levelId);
+
+  if (accessMessage) {
+    import('./ui/screens.js').then(({ goToAuthScreen }) => {
+      alert(accessMessage);
+      goToAuthScreen();
+    });
+    return;
+  }
+
   currentMode = "learning";
   currentLevel = level;
   currentSubLevel = sublevel;
@@ -491,6 +516,17 @@ function startTutorialMode() {
 }
 
 function startChallengeMode(challenge) {
+  const levelId = `challenge-${challenge}`;
+  const accessMessage = getAccessMessage(levelId);
+
+  if (accessMessage) {
+    import('./ui/screens.js').then(({ goToAuthScreen }) => {
+      alert(accessMessage);
+      goToAuthScreen();
+    });
+    return;
+  }
+
   currentMode = "challenge";
   currentChallenge = challenge;
   challengeIndex = 0;
@@ -757,7 +793,10 @@ function setupButtons() {
 // Initialization
 // ==================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await authManager.initialize();
+  initializeAuthUI();
+  initializeAdminDashboard();
   loadAchievements();
   loadLearningProgress();
   loadChallengeProgress();
@@ -765,9 +804,15 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLevelCompletion();
   setupButtons();
   startLatexAnimation();
+  updateActivityTracking();
 });
 
-// Export for use in HTML onclick handlers
+function updateActivityTracking() {
+  setInterval(() => {
+    authManager.updateLastActive();
+  }, 5 * 60 * 1000);
+}
+
 window.startLearningMode = startLearningMode;
 window.startTutorialMode = startTutorialMode;
 window.startChallengeMode = startChallengeMode;

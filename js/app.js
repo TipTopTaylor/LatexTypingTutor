@@ -13,5 +13,6 @@
  * - /state: Global game state management
  */
 
+import './main.js';
 
 console.log('✅ LaTeX Typing Tutor - Refactored and ready!');

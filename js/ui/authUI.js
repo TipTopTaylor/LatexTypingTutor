@@ -1,5 +1,6 @@
 // Authentication UI Handler
 import { signUp, signIn, signOut } from '../auth/authManager.js';
+import { showScreen } from './screens.js';
 
 export function setupAuthUI() {
   const loginBtn = document.getElementById('loginBtn');
@@ -60,20 +61,12 @@ export function setupAuthUI() {
 }
 
 function showAuthScreen(mode) {
-  const authScreen = document.getElementById('authScreen');
-  const modeSelectionScreen = document.getElementById('modeSelectionScreen');
-
-  modeSelectionScreen.style.display = 'none';
-  authScreen.style.display = 'flex';
+  showScreen('authScreen');
   toggleAuthForms(mode);
 }
 
 function hideAuthScreen() {
-  const authScreen = document.getElementById('authScreen');
-  const modeSelectionScreen = document.getElementById('modeSelectionScreen');
-
-  authScreen.style.display = 'none';
-  modeSelectionScreen.style.display = 'flex';
+  showScreen('modeSelectionScreen');
 }
 
 async function handleLogin(e) {

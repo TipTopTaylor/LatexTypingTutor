@@ -48,6 +48,8 @@ import { normalizeInput } from './core/answerChecker.js';
 import { renderMath, resetTutorialTipState } from './core/rendering.js';
 import { initAuth, hasPremiumAccess } from './auth/authManager.js';
 import { setupAuthUI } from './ui/authUI.js';
+import { submitChallengeScore, switchLeaderboardChallenge } from './leaderboard/leaderboardManager.js';
+import { initLeaderboardUI, refreshLeaderboard } from './leaderboard/leaderboardUI.js';
 
 // Sounds
 const correctSound = new Audio('correct-sound.mp3');
@@ -274,6 +276,12 @@ window.checkAnswer = function() {
         const [min, sec] = timeText.split(":").map(Number);
         const elapsedSeconds = min * 60 + sec;
         saveBestTime(currentChallenge, elapsedSeconds);
+
+        submitChallengeScore(currentChallenge, elapsedSeconds).then(result => {
+          if (result.success && !result.skipped) {
+            refreshLeaderboard();
+          }
+        });
 
         if (elapsedSeconds < 60) {
           unlockAchievement("challengeUnder1");
@@ -584,6 +592,7 @@ async function startChallengeMode(challenge) {
   if (guideBtn) guideBtn.style.display = "none";
   startChallengeTimer();
   resetInputAndPreview();
+  switchLeaderboardChallenge(challenge);
   renderMath(currentMode, currentLevel, currentSubLevel, currentIndex, currentChallenge, challengeIndex, tutorialIndex, currentExpression, updateProgress, updateTutorialTip);
 }
 
@@ -826,6 +835,25 @@ function setupButtons() {
       window.updateOverlay();
     });
     inputField.addEventListener("keypress", window.handleKeyPress);
+
+    inputField.addEventListener("paste", (e) => {
+      if (currentMode === "challenge") {
+        e.preventDefault();
+        alert("Copy/paste is disabled in Challenge Mode to prevent cheating!");
+      }
+    });
+
+    inputField.addEventListener("cut", (e) => {
+      if (currentMode === "challenge") {
+        e.preventDefault();
+      }
+    });
+
+    inputField.addEventListener("copy", (e) => {
+      if (currentMode === "challenge") {
+        e.preventDefault();
+      }
+    });
   }
 }
 
@@ -844,6 +872,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateLevelCompletion();
   setupButtons();
   startLatexAnimation();
+  initLeaderboardUI();
 });
 
 window.startLearningMode = startLearningMode;

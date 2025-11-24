@@ -372,7 +372,10 @@ window.updatePreview = function() {
 };
 
 window.handleKeyPress = function(event) {
-  if (event.key === 'Enter') window.checkAnswer();
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    window.checkAnswer();
+  }
 };
 
 // ==================================================

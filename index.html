@@ -234,7 +234,7 @@
 
 
         <div id="inputContainer">
-          <input type="text" id="inputField" oninput="updateOverlay()" onkeypress="handleKeyPress(event)" autocomplete="off" placeholder="Type LaTeX syntax here..."> 
+          <input type="text" id="inputField" oninput="updateOverlay()" onkeydown="handleKeyPress(event)" autocomplete="off" placeholder="Type LaTeX syntax here..."> 
           <div id="inputOverlay" class = "no-mathjax"></div>
         </div>
         <button id="showGuideBtn">Show Guide</button>

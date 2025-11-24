@@ -5,29 +5,27 @@ let currentChallengeLevel = 'challenge1';
 let leaderboardSubscription = null;
 
 export function initLeaderboardUI() {
-  const sidebar = document.getElementById('ad-sidebar');
-  if (!sidebar) return;
+  const container = document.getElementById('leaderboard-container');
+  if (!container) return;
 
-  sidebar.innerHTML = `
-    <div id="leaderboard-container">
-      <h3>Daily Leaderboard</h3>
-      <select id="leaderboard-challenge-select" class="leaderboard-select">
-        <option value="challenge1">Challenge 1: Basic Math</option>
-        <option value="challenge2">Challenge 2: Greek Letters</option>
-        <option value="challenge3">Challenge 3: Subscripts & Powers</option>
-        <option value="challenge4">Challenge 4: Greek + Variables</option>
-        <option value="challenge5">Challenge 5: Integrals</option>
-        <option value="challenge6">Challenge 6: Definite Integrals</option>
-        <option value="challenge7">Challenge 7: Summations</option>
-        <option value="challenge8">Challenge 8: Complex Sums</option>
-        <option value="challenge9">Challenge 9: Advanced Calculus</option>
-        <option value="challenge10">Challenge 10: Masters</option>
-      </select>
-      <div id="leaderboard-list" class="leaderboard-list">
-        <div class="leaderboard-loading">Loading...</div>
-      </div>
-      <p class="leaderboard-note">Resets daily at midnight UTC</p>
+  container.innerHTML = `
+    <h3>Daily Leaderboard</h3>
+    <select id="leaderboard-challenge-select" class="leaderboard-select">
+      <option value="challenge1">Challenge 1: Basic Math</option>
+      <option value="challenge2">Challenge 2: Greek Letters</option>
+      <option value="challenge3">Challenge 3: Subscripts & Powers</option>
+      <option value="challenge4">Challenge 4: Greek + Variables</option>
+      <option value="challenge5">Challenge 5: Integrals</option>
+      <option value="challenge6">Challenge 6: Definite Integrals</option>
+      <option value="challenge7">Challenge 7: Summations</option>
+      <option value="challenge8">Challenge 8: Complex Sums</option>
+      <option value="challenge9">Challenge 9: Advanced Calculus</option>
+      <option value="challenge10">Challenge 10: Masters</option>
+    </select>
+    <div id="leaderboard-list" class="leaderboard-list">
+      <div class="leaderboard-loading">Loading...</div>
     </div>
+    <p class="leaderboard-note">Resets daily at midnight UTC</p>
   `;
 
   const select = document.getElementById('leaderboard-challenge-select');

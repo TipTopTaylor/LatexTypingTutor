@@ -208,11 +208,11 @@ export const allSublevels = {
      forPhysicistI: [
        { latex: "\\vec{x} \\cdot \\vec{y}", math: "\\vec{x} \\cdot \\vec{y}" },
        { latex: "\\dot{x} \\cdot \\dot{y}", math: "\\dot{x} \\cdot \\dot{y}" },
-       { latex: "\\hat{x} \\cdot \\hat{y}", math: "\\vec{x} \\cdot \\vec{y}" },
+       { latex: "\\hat{x} \\cdot \\hat{y}", math: "\\hat{x} \\cdot \\hat{y}" },
        { latex: "\\hat{H} = \\sum_{i=1}^{N} \\frac{p_{i}^{2}}{2m} + V(q_{1},\\dots,q_{N})", math: "\\hat{H} = \\sum_{i=1}^{N} \\frac{p_{i}^{2}}{2m} + V(q_{1},\\dots,q_{N})" },
        { latex: "\\hat{H} = \\frac{p^{2}}{2m} + \\frac{1}{2} m\\omega^{2}x^{2}", math: "\\hat{H} = \\frac{p^{2}}{2m} + \\frac{1}{2} m\\omega^{2}x^{2}" },
        { latex: "\\frac{d}{dt}(\\frac{\\partial L}{\\partial \\dot{q}})-\\frac{\\partial L}{\\partial q}=0", math: "\\frac{d}{dt}(\\frac{\\partial L}{\\partial \\dot{q}})-\\frac{\\partial L}{\\partial q}=0" },
-       { latex: "\\hat{x} \\times \\hat{y} = \\vec{z}", math: "\\vec{x} \\times \\vec{y} = \\vec{z}" },
+       { latex: "\\hat{x} \\times \\hat{y} = \\hat{z}", math: "\\hat{x} \\times \\hat{y} = \\hat{z}" },
        { latex: "L = T-V", math: "L = T-V" },
        { latex: "L = \\frac{1}{2}mv^{2} - mgh", math: "L = \\frac{1}{2}mv^{2} - mgh" },
        { latex: "L = \\frac{1}{2}I\\omega^{2} - U(\\theta)", math: "L = \\frac{1}{2}I\\omega^{2} - U(\\theta)" },

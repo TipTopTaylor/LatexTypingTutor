@@ -28,6 +28,8 @@ export function getShell(token) {
     if (command === '\\int' || command === '\\iint') return command + '^{}_{}';
     if (command === '\\sum') return '\\sum^{}_{}';
     if (command === '\\hat') return '\\hat{}';
+    if (command === '\\vec') return '\\vec{}';
+    if (command === '\\dot') return '\\dot{}';
   }
 
   if (token.startsWith('^')) return '^{}';
